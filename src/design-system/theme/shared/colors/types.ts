@@ -8,4 +8,3 @@ export type ColorProps = {
   feedbackError: string
   feedbackSuccess: string
 }
-

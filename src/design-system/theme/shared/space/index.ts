@@ -9,5 +9,5 @@ export const space: SpaceProps = {
   spacing16: spacingJson.spacing16,
   spacing20: spacingJson.spacing20,
   spacing24: spacingJson.spacing24,
-  spacing32: spacingJson.spacing32,  
+  spacing32: spacingJson.spacing32,
 }
