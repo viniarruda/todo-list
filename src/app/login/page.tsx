@@ -1,9 +1,9 @@
-import { Flex } from '@design-system/components/Layout/Flex'
+import { Flex, Button } from '@design-system/components'
+
+import { LoginScreen } from '@/modules/auth/screens'
 
 export default function Login() {
   return (
-    <Flex align="center">
-      <h1>Title</h1>
-    </Flex>
+    <LoginScreen />
   )
 }

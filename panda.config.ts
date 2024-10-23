@@ -1,12 +1,14 @@
 import { defineConfig } from '@pandacss/dev'
 
-import { colors, space } from '@design-system/theme/shared'
+import { colors } from '@design-system/theme/shared'
 
 import { transformTokensToThemeObject } from '@design-system/theme/utils'
 
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
+
+  jsxFramework: 'react',
 
   // Where to look for your css declarations
   include: ['./src/**/*.{js,jsx,ts,tsx}', './pages/**/*.{js,jsx,ts,tsx}'],
@@ -19,9 +21,12 @@ export default defineConfig({
     extend: {
       tokens: {
         colors: transformTokensToThemeObject(colors),
-        spacing: transformTokensToThemeObject(space),
       },
     },
+  },
+
+  staticCss: {
+    recipes: '*'
   },
 
   // The output directory for your css system
