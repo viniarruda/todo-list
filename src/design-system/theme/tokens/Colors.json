@@ -1,0 +1,10 @@
+{
+  "textPrimary": "#e7e7e7",
+  "textSecondary": "#b8b8b8",
+  "textTertiary": "#949494",
+  "backgroundPrimary": "#1b1b1b",
+  "backgroundSecondary": "#252525",
+  "backgroundTertiary": "#363636",
+  "feedbackError": "#fa4d56",
+  "feedbackSuccess": "#10b981"
+}
