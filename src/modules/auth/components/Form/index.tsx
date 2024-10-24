@@ -20,7 +20,7 @@ export const FormLogin = ({ isLoading }: FormLoginProps) => {
       gap="spacing8"
       direction="column"
       align="center"
-      bg="secondary"
+      bg="backgroundSecondary"
       width="md"
       radius="sm"
       p="10"

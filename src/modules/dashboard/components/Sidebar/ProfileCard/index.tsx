@@ -4,7 +4,7 @@ import { ProfileCardProps } from './types'
 export const ProfileCard = ({ user }: ProfileCardProps) => {
   return (
     <Flex
-      bg="tertiary"
+      bg="backgroundTertiary"
       justify="center"
       align="center"
       gap="spacing4"

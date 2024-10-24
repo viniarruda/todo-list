@@ -14,7 +14,7 @@ export const LoginScreen = () => {
       height="dvh"
       justify="center"
       align="center"
-      bg="primary"
+      bg="backgroundPrimary"
     >
       <FormProvider defaultValues={defaultValues}>
         <FormRoot />

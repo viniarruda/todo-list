@@ -101,17 +101,6 @@ export const Flex = styled('div', {
         flexWrap: 'wrap-reverse',
       },
     },
-    bg: {
-      primary: {
-        bg: 'backgroundPrimary',
-      },
-      secondary: {
-        bg: 'backgroundSecondary',
-      },
-      tertiary: {
-        bg: 'backgroundTertiary',
-      },
-    },
     color: {
       primary: {
         color: 'textPrimary',
@@ -141,7 +130,7 @@ export const Flex = styled('div', {
       },
       circle: {
         borderRadius: 'full',
-      }
+      },
     },
   },
 })

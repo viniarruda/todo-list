@@ -6,7 +6,6 @@ This project use these following libs:
 - zustand
 - zod
 
-
 ## Project Structure
 
 ```sh
@@ -45,10 +44,29 @@ First of all, I decided to create an Todo List, so the first think that I did as
   <img align="center" alt="excalidraw mockup" height="400" width="600" src="https://github.com/viniarruda/todo-list/blob/main/public/excalidraw_mockup.jpeg">
 </div>
 
-## Theme 
+## Theme
 
 PandaCss have a default theme value, so the values in this project are based in this. You can see more [https://panda-css.com/docs/customization/theme](here)
 
 ## Mock Api
 
 I used [https://mockapi.io/](https://mockapi.io/) to created the Auth and TodoList mocked api
+
+#### Features
+
+- [x] Login
+- [ ] Home
+  - [x] Sidebar
+  - [x] Dashboard
+  - [ ] Board List
+    - [ ] Create new board
+    - [ ] Edit board
+    - [ ] Delete board
+  - [ ] Todo List
+    - [ ] Create new todo
+    - [ ] Edit todo
+    - [ ] Delete todo
+- [ ] Components
+  - [ ] Badge
+  - [ ] Board Cards
+  - [ ] Todo Cards

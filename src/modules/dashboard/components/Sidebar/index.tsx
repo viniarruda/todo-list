@@ -15,7 +15,7 @@ export const Sidebar = () => {
       width="295px"
       direction="column"
       height="lvh"
-      bg="primary"
+      bg="backgroundPrimary"
       align="start"
       justify="between"
     >
