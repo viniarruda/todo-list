@@ -14,6 +14,24 @@ export const Container = styled(Flex, {
     borderTop: '50px solid rgba(230, 236, 245, 0.4)',
     cursor: 'grab',
   },
+
+  variants: {
+    isDragging: {
+      true: {
+        border: '2px dashed rgba(255, 255, 255, 0.2)',
+        paddingTop: '50px',
+        borderRadius: 'inherit',
+        background: 'transparent',
+        boxShadow: 'none',
+        cursor: 'grabbing',
+
+        '& p, & span, & header': {
+          opacity: 0,
+        },
+      },
+      false: {},
+    },
+  },
 })
 
 export const Header = styled(`header`, {

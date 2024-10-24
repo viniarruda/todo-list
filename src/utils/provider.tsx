@@ -1,16 +1,18 @@
-"use client"
+'use client'
 
-import React from "react";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import React from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function Providers({ children }: React.PropsWithChildren) {
-  const [client] = React.useState(new QueryClient());
+  const [client] = React.useState(new QueryClient())
 
   return (
     <QueryClientProvider client={client}>
-      {children}
+      <DndProvider backend={HTML5Backend}>{children}</DndProvider>
     </QueryClientProvider>
-  );
+  )
 }
 
-export default Providers;
+export default Providers

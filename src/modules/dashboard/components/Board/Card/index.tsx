@@ -1,3 +1,7 @@
+'use client'
+
+import { useDrag } from 'react-dnd'
+
 import { Badge, Flex, Typography } from '@/design-system/components'
 
 import { Priority } from '@/services/entities/Todo'
@@ -7,6 +11,16 @@ import { badgeColor, CardProps } from './types'
 import { Container, Header } from './styles'
 
 export const Card = ({ todo }: CardProps) => {
+  const [{ isDragging }, dragRef] = useDrag({
+    type: 'CARD',
+    item: {
+      type: 'CARD',
+    },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+
   const getBadgeVariantColor = (status: Priority) => {
     const badgeVariants: badgeColor = {
       [Priority.Low]: 'info',
@@ -18,7 +32,10 @@ export const Card = ({ todo }: CardProps) => {
   }
 
   return (
-    <Container>
+    <Container
+      ref={dragRef as unknown as React.Ref<HTMLDivElement>}
+      isDragging={isDragging}
+    >
       <Header>
         {todo?.labels?.map(label => (
           <Badge key={label.id} color={getBadgeVariantColor(label.priority)}>
