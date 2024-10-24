@@ -1,9 +1,11 @@
+import { BaseLayout } from '@/layouts/BaseLayout'
 
+import { Home } from '@/modules/dashboard/screens/Home'
 
 export default function Dashboard() {
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+    <BaseLayout title="Todo Dashboard">
+      <Home />
+    </BaseLayout>
   )
 }

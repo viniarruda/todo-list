@@ -1,7 +1,10 @@
 import pluginQuery from '@tanstack/eslint-plugin-query'
 
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+
 export default [
   ...pluginQuery.configs['flat/recommended'],
+  ...eslintPluginPrettierRecommended,
   {
     extends: ["next/core-web-vitals", "next/typescript", "prettier"],
     rules: {

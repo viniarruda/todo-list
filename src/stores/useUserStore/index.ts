@@ -17,9 +17,9 @@ export const useUserStore = create<State>(set => {
     saveNewUser,
     reset,
     user: {
-      name: 'Vinicius Arruda',
-      email: 'vini@mail.com',
-      password: '123456',
-    }
+      name: '',
+      email: '',
+      id: '',
+    },
   }
 })
