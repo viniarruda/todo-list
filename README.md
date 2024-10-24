@@ -3,8 +3,10 @@ This project use these following libs:
 - NextJs
 - PandaCss
 - react-hook-form
+- react-query
 - zustand
 - zod
+- react-icons
 
 ## Project Structure
 

@@ -1,9 +1,12 @@
-import { cva, RecipeVariantProps } from '@styled-system/css'
+import { css, cva, RecipeVariantProps } from '@styled-system/css'
 
 export const buttonStyles = cva({
   base: {
     cursor: 'pointer',
-    borderRadius: 'sm'
+    borderRadius: 'sm',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   variants: {
     variant: {
@@ -12,25 +15,25 @@ export const buttonStyles = cva({
         color: 'textPrimary',
 
         '&:hover': {
-          bg: 'green.400'
-        }
+          bg: 'green.400',
+        },
       },
       error: {
         bg: 'feedbackError',
         color: 'textPrimary',
 
         '&:hover': {
-          bg: 'red.400'
-        }
+          bg: 'red.400',
+        },
       },
       default: {
         bg: 'backgroundTertiary',
         color: 'textPrimary',
 
         '&:hover': {
-          bg: 'backgroundSecondary'
-        }
-      }
+          bg: 'backgroundSecondary',
+        },
+      },
     },
     size: {
       small: {
@@ -47,14 +50,17 @@ export const buttonStyles = cva({
         height: '12',
         px: '24',
         fontSize: 'lg',
-      }
-    }
+      },
+    },
   },
   defaultVariants: {
     variant: 'default',
-    size: 'medium'
+    size: 'medium',
   },
 })
 
-export type ButtonVariants = RecipeVariantProps<typeof buttonStyles>
+export const iconContainer = css({
+  marginLeft: '1',
+})
 
+export type ButtonVariants = RecipeVariantProps<typeof buttonStyles>
