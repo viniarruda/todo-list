@@ -20,6 +20,6 @@ export const TextField = styled('input', {
       md: {
         width: 'md',
       },
-    }
+    },
   },
 })

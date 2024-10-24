@@ -1,5 +1,5 @@
 // Display
-export { Button, Typography, Title } from './Display'
+export { Button, Loading, Title, Typography } from './Display'
 
 // Form
 export { TextField } from './Form'

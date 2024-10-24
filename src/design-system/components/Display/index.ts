@@ -1,2 +1,3 @@
 export { Button } from './Button'
-export { Typography, Title } from './Typography'
+export { Loading } from './Loading'
+export { Title, Typography } from './Typography'

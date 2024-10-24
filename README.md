@@ -2,6 +2,9 @@ This project use these following libs:
 
 - NextJs
 - PandaCss
+- react-hook-form
+- zustand
+- zod
 
 
 ## Project Structure
@@ -42,8 +45,10 @@ First of all, I decided to create an Todo List, so the first think that I did as
   <img align="center" alt="excalidraw mockup" height="400" width="600" src="https://github.com/viniarruda/todo-list/blob/main/public/excalidraw_mockup.jpeg">
 </div>
 
-
-
 ## Theme 
 
 PandaCss have a default theme value, so the values in this project are based in this. You can see more [https://panda-css.com/docs/customization/theme](here)
+
+## Mock Api
+
+I used [https://mockapi.io/](https://mockapi.io/) to created the Auth and TodoList mocked api
