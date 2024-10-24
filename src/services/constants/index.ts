@@ -3,4 +3,5 @@ const baseUrl = 'https://5eb454842b81f700163084b3.mockapi.io' // use this as env
 export const microservices = {
   signIn: baseUrl + '/login',
   todoList: baseUrl + '/todoList',
+  todo: (id: string) => baseUrl + `/todoList/${id}`,
 }

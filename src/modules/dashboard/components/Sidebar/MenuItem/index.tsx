@@ -2,20 +2,19 @@
 
 import { Flex } from '@/design-system/components'
 import { usePathname } from 'next/navigation'
+
 import { CustomLink, Item } from './styles'
 import { MenuItemProps } from './types'
 
 export const MenuItem = ({ path, routes, title, icon }: MenuItemProps) => {
   const pathname = usePathname()
 
-  const active = routes.includes(pathname)
-
-  console.log(active, pathname)
+  const isActive = routes.includes(pathname)
 
   return (
     <Flex width="full">
       <CustomLink href={path}>
-        <Item variant={active ? 'active' : 'default'}>
+        <Item variant={'active'}>
           {icon}
           {title}
         </Item>

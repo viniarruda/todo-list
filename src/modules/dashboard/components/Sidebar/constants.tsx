@@ -6,14 +6,8 @@ import { MenuItems } from './types'
 export const menuItens: MenuItems = [
   {
     title: 'Home',
-    routes: [routes.DASHBOARD],
+    routes: [routes.DASHBOARD, routes.DASHBOARD_TODO_LISTS('[boardId]')],
     path: routes.DASHBOARD,
     icon: <FaHouseChimney />,
   },
-  // {
-  //   title: 'Todo Lists',
-  //   routes: [routes.TODO_LISTS, routes.NEW_TODO_LISTS],
-  //   path: routes.TODO_LISTS,
-  //   icon: <FaTableList />,
-  // },
 ]
