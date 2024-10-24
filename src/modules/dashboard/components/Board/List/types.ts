@@ -3,4 +3,6 @@ import { Todo } from '@/services/entities/Todo'
 
 export type ListProps = {
   column: Column
+  listIndex: number
+  id: string
 }

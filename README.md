@@ -60,15 +60,22 @@ I used [https://mockapi.io/](https://mockapi.io/) to created the Auth and TodoLi
 - [ ] Home
   - [x] Sidebar
   - [x] Dashboard
-  - [ ] Board List
+  - [x] Board List
     - [ ] Create new board
     - [ ] Edit board
     - [ ] Delete board
-  - [ ] Todo List
+  - [x] Todo List
     - [ ] Create new todo
     - [ ] Edit todo
     - [ ] Delete todo
 - [ ] Components
-  - [ ] Badge
-  - [ ] Board Cards
-  - [ ] Todo Cards
+  - [x] Badge
+  - [x] Board Cards
+    - [ ] Add Drag'n'drop
+  - [x] Todo Cards
+
+## Steps
+
+- Board List
+
+- The card can be drag and drop up to another card to get your "place"

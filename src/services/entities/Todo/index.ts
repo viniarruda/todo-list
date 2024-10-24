@@ -4,17 +4,10 @@ export enum Priority {
   High = 'HIGH',
 }
 
-type Label = {
+export type Label = {
   id: string
   name: string
   priority: Priority
-}
-
-export enum Status {
-  Backlog = 'BACKLOG',
-  Todo = 'TODO',
-  InProgress = 'IN_PROGRESS',
-  Done = 'DONE',
 }
 
 export type Todo = {
@@ -23,5 +16,4 @@ export type Todo = {
   title: string
   description?: string
   labels?: Label[]
-  status: Status
 }

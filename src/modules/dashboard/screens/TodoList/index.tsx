@@ -7,18 +7,22 @@ import { createUseBoardKey } from '@/services/todo/queries/useTodo/key'
 import { List } from '@/modules/dashboard/components/Board/List'
 import { Board } from '@/modules/dashboard/components/Board/styles'
 
+import { useBoardStore } from '@/stores/useBoardStore'
+import { useEffect } from 'react'
 import { TodoListScreenProps } from './types'
 
 export const TodoListScreen = ({ id }: TodoListScreenProps) => {
-  const { data, isLoading } = useBoard(
-    {
-      id,
-    },
-    {
-      queryKey: createUseBoardKey({ id }),
-      enabled: !!id,
-    },
-  )
+  const saveNewBoard = useBoardStore(state => state.saveNewBoard)
+
+  const { data, isLoading } = useBoard({
+    id,
+  })
+
+  useEffect(() => {
+    if (data) {
+      saveNewBoard(data)
+    }
+  }, [data])
 
   return (
     <Flex direction="column" width="full">
@@ -38,8 +42,13 @@ export const TodoListScreen = ({ id }: TodoListScreenProps) => {
 
           {data.columns && (
             <Board>
-              {data.columns.map(column => (
-                <List key={column.title} column={column} />
+              {data.columns.map((column, index) => (
+                <List
+                  key={column.title}
+                  column={column}
+                  listIndex={index}
+                  id={id}
+                />
               ))}
             </Board>
           )}

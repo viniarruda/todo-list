@@ -6,7 +6,19 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function Providers({ children }: React.PropsWithChildren) {
-  const [client] = React.useState(new QueryClient())
+  const [client] = React.useState(
+    new QueryClient({
+      defaultOptions: {
+        queries: {
+          gcTime: 0,
+          staleTime: 0,
+          refetchOnMount: true,
+          refetchOnWindowFocus: true,
+          refetchInterval: false,
+        },
+      },
+    }),
+  )
 
   return (
     <QueryClientProvider client={client}>

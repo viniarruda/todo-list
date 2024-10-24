@@ -41,3 +41,13 @@ export const Header = styled(`header`, {
     left: '5px',
   },
 })
+
+export const EmptyCard = styled(Flex, {
+  base: {
+    border: '2px dashed rgba(255, 255, 255, 0.2)',
+    borderRadius: 'inherit',
+    background: 'transparent',
+    boxShadow: 'none',
+    height: '130px',
+  },
+})

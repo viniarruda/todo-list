@@ -1,9 +1,36 @@
+import { Column } from '@/services/entities/Board'
 import { Priority, Todo } from '@/services/entities/Todo'
 
 export type CardProps = {
-  todo: Todo
+  todo?: Todo
+  index: number
+  listIndex: number
+  todos: Todo[]
+  id: string
+  currentColumn: Column
 }
 
 export type badgeColor = {
   [key in Priority]: 'success' | 'info' | 'warning' | 'danger'
+}
+
+export type DragItemProps = {
+  type: string
+  id: string
+  index: number
+  listIndex: number
+}
+
+export type UpdateBoardCardsOrder = {
+  todos: Todo[]
+  destinationIndex: number
+  sourceIndex: number
+}
+
+export type UpdateBoardColumns = {
+  columns?: Column[]
+  draggedListIndex: number
+  targetListIndex: number
+  sourceIndex: number
+  destinationIndex: number
 }
