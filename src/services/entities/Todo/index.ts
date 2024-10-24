@@ -1,10 +1,16 @@
+export enum Priority {
+  Low = 'LOW',
+  Medium = 'MEDIUM',
+  High = 'HIGH',
+}
+
 type Label = {
   id: string
   name: string
-  color: string
+  priority: Priority
 }
 
-enum Status {
+export enum Status {
   Backlog = 'BACKLOG',
   Todo = 'TODO',
   InProgress = 'IN_PROGRESS',

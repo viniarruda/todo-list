@@ -111,6 +111,9 @@ export const Flex = styled('div', {
       tertiary: {
         color: 'textTertiary',
       },
+      inverse: {
+        color: 'neutral.900',
+      },
     },
     radius: {
       xs: {

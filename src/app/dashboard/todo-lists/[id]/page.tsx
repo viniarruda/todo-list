@@ -2,11 +2,12 @@ import { BaseLayout } from '@/layouts/BaseLayout'
 
 import { TodoListScreen } from '@/modules/dashboard/screens/TodoList'
 
-export default function DashboardTodoList({
-  params,
-}: {
-  params: { id: string }
-}) {
+export default async function DashboardTodoList(
+  props: {
+    params: Promise<{ id: string }>
+  }
+) {
+  const params = await props.params;
   const { id } = params
 
   return (

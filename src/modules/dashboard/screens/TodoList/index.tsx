@@ -1,26 +1,50 @@
 'use client'
 
-import { Flex, Title } from '@/design-system/components'
+import { Flex, Title, Typography } from '@/design-system/components'
 import { useBoard } from '@/services/todo/queries/useTodo'
 import { createUseBoardKey } from '@/services/todo/queries/useTodo/key'
+
+import { List } from '@/modules/dashboard/components/Board/List'
+import { Board } from '@/modules/dashboard/components/Board/styles'
 
 import { TodoListScreenProps } from './types'
 
 export const TodoListScreen = ({ id }: TodoListScreenProps) => {
-  // const { data, isLoading } = useBoard(
-  //   {
-  //     id,
-  //   },
-  //   {
-  //     queryKey: createUseBoardKey({ id }),
-  //     enabled: !!id,
-  //   },
-  // )
+  const { data, isLoading } = useBoard(
+    {
+      id,
+    },
+    {
+      queryKey: createUseBoardKey({ id }),
+      enabled: !!id,
+    },
+  )
 
   return (
-    <Flex>
-      {console.log(id, '-------')}
+    <Flex direction="column" width="full">
       <Title>Todo List</Title>
+      {isLoading && <Flex>Loading...</Flex>}
+
+      {data && (
+        <Flex direction="column" width="full" height="full" color="inverse">
+          <Flex direction="column" align="center">
+            <Typography fontSize="5xl" color="textPrimary">
+              {data.title}
+            </Typography>
+            <Typography fontSize="3xl" fontWeight="light" color="textPrimary">
+              {data.description}
+            </Typography>
+          </Flex>
+
+          {data.columns && (
+            <Board>
+              {data.columns.map(column => (
+                <List key={column.title} column={column} />
+              ))}
+            </Board>
+          )}
+        </Flex>
+      )}
     </Flex>
   )
 }

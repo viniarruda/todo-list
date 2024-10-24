@@ -30,12 +30,13 @@ export const Home = () => {
   }
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" width="full">
       <Flex
         align="center"
         justify="between"
         borderBottom="1px solid #d6d6d6"
         marginBottom="8"
+        width="full"
       >
         <Title color="textPrimary">Todo lists</Title>
         <Button variant="success">Create new board</Button>
@@ -44,7 +45,7 @@ export const Home = () => {
         {data.map(board => (
           <Flex
             key={board.id}
-            mx="2"
+            m="2"
             bg="backgroundTertiary"
             direction="column"
             borderRadius="sm"
