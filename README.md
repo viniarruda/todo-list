@@ -113,3 +113,4 @@ Go to `src/services/requestExamples` and copy the json in `api.json`. You can do
 - [ ] Create api for board and for tasks
 - [ ] Improve tests
 - [ ] AuthLayout
+- [ ] Add due date to Task
