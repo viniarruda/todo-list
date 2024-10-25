@@ -93,7 +93,7 @@ Go to `src/services/requestExamples` and copy the json in `api.json`. You can do
     - [ ] Edit todo
     - [x] Move between columns
     - [ ] Delete todo
-- [ ] Components
+- [x] Components
   - [x] Badge
   - [x] Board Cards
     - [x] Add Drag'n'drop
