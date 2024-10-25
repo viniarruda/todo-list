@@ -7,6 +7,7 @@ This project use these following libs:
 - zustand
 - zod
 - react-icons
+- jest + testing-library
 
 ## Project Structure
 
@@ -42,6 +43,9 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+`username`: any mail. ex: mail@test.com
+`password`: any password. ex: 123456
+
 ## Project idea
 
 First of all, I decided to create an Todo List, so the first think that I did as validate the idea using [https://excalidraw.com/](excalidraw)
@@ -57,6 +61,10 @@ PandaCss have a default theme value, so the values in this project are based in 
 ## Mock Api
 
 I used [https://mockapi.io/](https://mockapi.io/) to created the Auth and TodoList mocked api
+
+## How to create a new board when doest have form yet?
+
+Go to `src/services/requestExamples` and copy the json in `api.json`. You can do `POST` request in postman in this url: `https://5eb454842b81f700163084b3.mockapi.io/todoList`
 
 #### Features
 
