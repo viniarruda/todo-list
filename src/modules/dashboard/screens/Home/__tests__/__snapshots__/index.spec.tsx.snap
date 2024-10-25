@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard home when screen render should render correctly 1`] = `
+<div>
+  <div>
+    <div>
+      No Todo List registered!
+    </div>
+    <button
+      class="cursor_pointer bdr_sm d_flex jc_center ai_center [&:disabled]:cursor_not-allowed [&:disabled]:op_0.5 bg_backgroundTertiary c_textPrimary [&:hover]:bg_backgroundSecondary h_10 px_24 fs_md"
+      type="submit"
+    >
+      Create new!
+    </button>
+  </div>
+</div>
+`;

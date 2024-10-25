@@ -79,6 +79,12 @@ I used [https://mockapi.io/](https://mockapi.io/) to created the Auth and TodoLi
     - [x] Add Drag'n'drop
   - [x] Todo Cards
 
+## Type of tests coverage
+
+- Unit
+- Integration
+- Api
+
 ## Future steps
 
 - Add form to input values from new board
