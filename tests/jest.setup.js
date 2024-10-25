@@ -8,3 +8,12 @@ jest.mock('react-dnd', () => ({
 jest.mock('react-dnd-html5-backend', () => ({
   HTML5Backend: jest.fn(),
 }))
+
+jest.mock('@/services/constants', () => ({
+  baseUrl: 'http://localhost.com',
+  routes: {
+    signIn: '/login',
+    todoList: '/todoList',
+    todo: jest.fn(() => '/todoList/123'),
+  },
+}))

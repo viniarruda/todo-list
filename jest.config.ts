@@ -31,6 +31,7 @@ const config: Config = {
     'layout.tsx',
     'constants.ts',
     'routes.ts',
+    'types.ts',
   ],
   coverageDirectory: '<rootDir>/tests/coverage/',
   setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.js'],
@@ -39,6 +40,9 @@ const config: Config = {
   coverageProvider: 'v8',
   preset: 'ts-jest', // Ensure Jest uses ts-jest for transformation
   testEnvironment: 'jsdom', // Simulate browser environment for React components
+  testEnvironmentOptions: {
+    url: 'http://localhost.com',
+  },
   transformIgnorePatterns: [
     '/node_modules/(?!react-dnd|core-dnd|@react-dnd|dnd-core|react-dnd-html5-backend)',
   ],

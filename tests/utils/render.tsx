@@ -4,6 +4,8 @@ import { RenderOptions, render as testingRender } from '@testing-library/react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+import { createApi } from '@tests/utils/axios'
+
 import { Props } from './types'
 
 const queryClient = new QueryClient({
@@ -26,3 +28,5 @@ const customRender = (
 export { act, fireEvent, screen, waitFor } from '@testing-library/react'
 
 export { customRender as render }
+
+export const API_URL_MOCK = 'http://localhost.com'
