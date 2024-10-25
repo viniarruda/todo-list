@@ -100,3 +100,4 @@ Go to `src/services/requestExamples` and copy the json in `api.json`. You can do
 - Create api to save the users to link the boards
 - Create api for board and for tasks
 - Improve tests
+- AuthLayout
