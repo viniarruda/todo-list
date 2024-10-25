@@ -29,7 +29,7 @@ export const Home = () => {
         width="full"
         gap="spacing8"
       >
-        <Typography fontSize="3xl">No Todo List registered!</Typography>
+        <Typography fontSize="3xl">No Board registered!</Typography>
         <Button disabled={true}>Create new!</Button>
       </Flex>
     )
