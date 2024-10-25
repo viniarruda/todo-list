@@ -1,4 +1,4 @@
-import { Avatar, Flex, Typography } from '@design-system/components'
+import { Avatar, Flex, Typography } from '@/design-system/components'
 import { ProfileCardProps } from './types'
 
 export const ProfileCard = ({ user }: ProfileCardProps) => {

@@ -1,6 +1,6 @@
 import { styled } from '@styled-system/jsx'
 
-import { Flex } from '@design-system/components'
+import { Flex } from '@/design-system/components'
 
 export const Container = styled(Flex, {
   base: {

@@ -5,8 +5,8 @@ import {
   Typography,
 } from '@/design-system/components/Display/Typography'
 
+import { Button, Flex, TextField } from '@/design-system/components'
 import { SignInFormData } from '@/modules/auth/components/FormProvider/types'
-import { Button, Flex, TextField } from '@design-system/components'
 import { FormLoginProps } from './types'
 
 export const FormLogin = ({ isLoading }: FormLoginProps) => {

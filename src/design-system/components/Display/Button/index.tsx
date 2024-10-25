@@ -1,4 +1,4 @@
-import { Loading } from '@design-system/components'
+import { Loading } from '@/design-system/components'
 
 import { buttonStyles, iconContainer } from './styles'
 import { ButtonProps } from './types'

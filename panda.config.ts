@@ -1,6 +1,6 @@
 import { defineConfig } from '@pandacss/dev'
 
-import { colors } from '@design-system/theme/shared'
+import { colors } from '@/design-system/theme/shared'
 
 import { transformTokensToThemeObject } from '@design-system/theme/utils'
 
@@ -26,9 +26,10 @@ export default defineConfig({
   },
 
   staticCss: {
-    recipes: '*'
+    recipes: '*',
   },
 
   // The output directory for your css system
   outdir: 'styled-system',
+  outExtension: 'js',
 })

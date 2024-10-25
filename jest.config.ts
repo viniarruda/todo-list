@@ -33,16 +33,19 @@ const config: Config = {
     'routes.ts',
   ],
   coverageDirectory: '<rootDir>/tests/coverage/',
-
   setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.js'],
-  moduleNameMapper: {
-    // Handle global stuff aliases
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^@design-system/(.*)$': '<rootDir>/src/design-system/$1',
-  },
   resolver: '<rootDir>/tests/resolver.js',
   testMatch: ['**/__tests__/**/*.spec.ts?(x)'],
   coverageProvider: 'v8',
+  preset: 'ts-jest', // Ensure Jest uses ts-jest for transformation
+  testEnvironment: 'jsdom', // Simulate browser environment for React components
+  transformIgnorePatterns: [
+    '/node_modules/(?!react-dnd|core-dnd|@react-dnd|dnd-core|react-dnd-html5-backend)',
+  ],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@design-system/(.*)$': '<rootDir>/src/design-system/$1',
+  },
 }
 
 export default createJestConfig(config)

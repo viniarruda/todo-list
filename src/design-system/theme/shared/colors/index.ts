@@ -1,4 +1,4 @@
-import colorsJson from '@design-system/theme/tokens/Colors.json'
+import colorsJson from '@/design-system/theme/tokens/Colors.json'
 import { ColorProps } from './types'
 
 export const colors: ColorProps = {

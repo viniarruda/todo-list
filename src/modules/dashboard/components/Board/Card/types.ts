@@ -5,9 +5,7 @@ export type CardProps = {
   todo?: Todo
   index: number
   listIndex: number
-  todos: Todo[]
   id: string
-  currentColumn: Column
 }
 
 export type badgeColor = {

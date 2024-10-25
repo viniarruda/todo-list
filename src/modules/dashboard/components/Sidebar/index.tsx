@@ -1,6 +1,6 @@
 'use client'
 
-import { Flex } from '@design-system/components'
+import { Flex } from '@/design-system/components'
 
 import { useUserStore } from '@/stores/useUserStore'
 import { menuItens } from './constants'

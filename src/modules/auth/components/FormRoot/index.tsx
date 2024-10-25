@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation'
 import { useFormContext } from 'react-hook-form'
 
+import { Flex } from '@/design-system/components'
 import { FormLogin } from '@/modules/auth/components/Form'
-import { Flex } from '@design-system/components'
 
 import { SignInFormData } from '@/modules/auth/components/FormProvider/types'
 import { useAuthSignIn } from '@/services/auth/mutations/useAuthSignIn'

@@ -1,4 +1,4 @@
-import { Flex } from '@design-system/components'
+import { Flex } from '@/design-system/components'
 import { styled } from '@styled-system/jsx'
 
 export const Container = styled(Flex, {

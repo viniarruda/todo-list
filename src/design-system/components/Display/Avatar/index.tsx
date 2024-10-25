@@ -1,9 +1,11 @@
 'use client'
 
+import { useMemo } from 'react'
+
+import { Typography } from '@/design-system/components'
+
 import { Container } from './styles'
 
-import { useMemo } from 'react'
-import { Typography } from '../Typography'
 import { AvatarProps } from './types'
 
 export const Avatar = ({ size, name }: AvatarProps) => {

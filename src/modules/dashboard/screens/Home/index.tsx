@@ -2,9 +2,9 @@
 
 import { FaChevronRight } from 'react-icons/fa6'
 
+import { Button, Flex, Title, Typography } from '@/design-system/components'
 import { useBoardList } from '@/services/todo/queries/useTodoList'
 import { routes } from '@/utils/routes'
-import { Button, Flex, Title, Typography } from '@design-system/components'
 import { useRouter } from 'next/navigation'
 
 export const Home = () => {

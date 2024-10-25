@@ -9,7 +9,6 @@ import { Props } from './types'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // ✅ turns retries off
       retry: false,
     },
   },

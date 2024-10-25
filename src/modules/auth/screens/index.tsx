@@ -1,6 +1,6 @@
 'use client'
 
-import { Flex } from '@design-system/components'
+import { Flex } from '@/design-system/components'
 
 import { FormProvider } from '@/modules/auth/components/FormProvider'
 import { FormRoot } from '@/modules/auth/components/FormRoot'
