@@ -1,3 +1,15 @@
+## Project idea
+
+The idea of ​​the project is that users can create different boards to separate each task they need to perform during the week.
+
+Some examples of boards that can be created:
+
+- Work
+- Personal
+- Gym
+
+## Libs
+
 This project use these following libs:
 
 - NextJs
