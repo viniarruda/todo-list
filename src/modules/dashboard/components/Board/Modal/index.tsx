@@ -37,6 +37,7 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
     setValue,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues,
     resolver: zodResolver(schema()),
@@ -90,6 +91,8 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
       {
         onSuccess: async data => {
           onClose()
+
+          reset()
 
           queryClient.setQueryData(createUseBoardKey({ id }), data)
 
