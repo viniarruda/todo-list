@@ -39,7 +39,9 @@ export const Home = () => {
         width="full"
       >
         <Title color="textPrimary">Todo lists</Title>
-        <Button variant="success">Create new board</Button>
+        <Button variant="success" disabled={true}>
+          Create new board
+        </Button>
       </Flex>
       <Flex wrap="wrap" borderRadius="sm" p="2" justify="center" width="full">
         {data.map(board => (

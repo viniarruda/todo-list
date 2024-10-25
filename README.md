@@ -18,6 +18,10 @@ src
     └── tokens # json tokens files
     └── utils # some functions that help to use theme
   └── components # components folder
+└── layouts # Nextjs layouts
+└── services # react-query queries and mutations
+└── stores # zustand store
+└── utils # utils
 └── app        # Next app folder
  └── featureName       # specific name of the pages
 ```
@@ -61,21 +65,24 @@ I used [https://mockapi.io/](https://mockapi.io/) to created the Auth and TodoLi
   - [x] Sidebar
   - [x] Dashboard
   - [x] Board List
-    - [ ] Create new board
+    - [x] Create new board
     - [ ] Edit board
     - [ ] Delete board
   - [x] Todo List
-    - [ ] Create new todo
+    - [x] Create new todo
     - [ ] Edit todo
+    - [x] Move between columns
     - [ ] Delete todo
 - [ ] Components
   - [x] Badge
   - [x] Board Cards
-    - [ ] Add Drag'n'drop
+    - [x] Add Drag'n'drop
   - [x] Todo Cards
 
-## Steps
+## Future steps
 
-- Board List
-
-- The card can be drag and drop up to another card to get your "place"
+- Add form to input values from new board
+- Dynamic labels
+- Create api to save the users to link the boards
+- Create api for board and for tasks
+- Improve tests

@@ -7,6 +7,11 @@ export const buttonStyles = cva({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.5,
+    },
   },
   variants: {
     variant: {

@@ -1,5 +1,8 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useForm, useWatch } from 'react-hook-form'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 
@@ -15,9 +18,9 @@ import { Priority } from '@/services/entities/Todo'
 import { useUpdateTodo } from '@/services/todo/mutations/useUpdateTodo'
 import { createUseBoardKey } from '@/services/todo/queries/useTodo/key'
 import { useBoardStore } from '@/stores/useBoardStore'
-import { useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+
 import { badges, defaultValues } from './constants'
+import { schema } from './schema'
 import { CloseButton, Container, CustomBadge } from './styles'
 import { FormData, ModalProps } from './types'
 
@@ -28,8 +31,16 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
 
   const queryClient = useQueryClient()
 
-  const { register, handleSubmit, setValue, control } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm({
     defaultValues,
+    resolver: zodResolver(schema()),
+    mode: 'onSubmit',
   })
 
   const labelPriority = useWatch({
@@ -111,6 +122,11 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
               Task name *
             </Typography>
             <TextField {...register('title')} type="text" />
+            {errors.title && (
+              <Typography fontSize="sm" color="feedbackError">
+                {errors.title.message}
+              </Typography>
+            )}
           </Flex>
 
           <Flex direction="column" gap="spacing2">
@@ -134,6 +150,11 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
                 />
               ))}
             </Flex>
+            {errors.labelPriority && (
+              <Typography fontSize="sm" color="feedbackError">
+                {errors.labelPriority.message}
+              </Typography>
+            )}
           </Flex>
           <Flex justify="center" align="center">
             <Button

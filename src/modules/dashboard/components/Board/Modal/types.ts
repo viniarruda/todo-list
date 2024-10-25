@@ -11,7 +11,7 @@ export type ModalProps = {
 export type FormData = {
   title: string
   labelName: string
-  labelPriority: Priority | null
+  labelPriority: Priority | ''
 }
 
 export type Badges = {

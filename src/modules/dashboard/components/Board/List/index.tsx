@@ -44,12 +44,13 @@ export const List = ({ column, listIndex, id }: ListProps) => {
           />
         ))}
       </ul>
-      {/* <Card
-          index={column.todos.length}
-          listIndex={listIndex}
-          todos={[]}
-          currentColumn={column}
-        /> */}
+      <Card
+        id={id}
+        index={column.todos.length}
+        listIndex={listIndex}
+        todos={[]}
+        currentColumn={column}
+      />
       <Modal open={showModal} onClose={toggleModal} id={id} column={column} />
     </Container>
   )

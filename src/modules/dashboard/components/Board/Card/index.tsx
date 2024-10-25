@@ -15,14 +15,7 @@ import { Container, EmptyCard, Header } from './styles'
 import { badgeColor, CardProps, DragItemProps } from './types'
 import { updateBoardColumns } from './utils'
 
-export const Card = ({
-  todo,
-  id,
-  index,
-  todos,
-  currentColumn,
-  listIndex,
-}: CardProps) => {
+export const Card = ({ todo, id, index, listIndex }: CardProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
 
   const board = useBoardStore(state => state.board)
@@ -84,12 +77,6 @@ export const Card = ({
           }
         }
 
-        // const updatedTodos = updateBoardCardsOrder({
-        //   todos,
-        //   sourceIndex: draggedIndex,
-        //   destinationIndex: targetIndex,
-        // })
-
         const updatedColumns = updateBoardColumns({
           columns: board?.columns,
           destinationIndex: targetIndex,
@@ -130,9 +117,9 @@ export const Card = ({
 
   dragRef(dropRef(ref))
 
-  // if (todo === undefined) {
-  //   return <EmptyCard />
-  // }
+  if (todo === undefined) {
+    return <EmptyCard ref={ref} />
+  }
 
   return (
     <Container ref={ref} isDragging={isDragging}>

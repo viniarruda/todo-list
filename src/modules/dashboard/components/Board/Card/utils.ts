@@ -16,18 +16,6 @@ export const updateBoardCardsOrder = ({
   return updatedTodos
 }
 
-// export const updateBoardColumns = ({
-//   columnTitle,
-//   reorderedTodos,
-//   columns,
-// }: UpdateBoardColumns): Column[] => {
-//   return (columns || []).map(column =>
-//     column.title === columnTitle
-//       ? { ...column, todos: reorderedTodos }
-//       : column,
-//   )
-// }
-
 export const updateBoardColumns = ({
   columns,
   draggedListIndex,

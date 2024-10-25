@@ -26,6 +26,7 @@ export const Container = styled(`dialog`, {
     borderRadius: 'md',
     backgroundColor: 'backgroundPrimary',
     boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.4)',
+    zIndex: '100',
   },
 })
 

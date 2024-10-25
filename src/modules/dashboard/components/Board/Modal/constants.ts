@@ -4,7 +4,7 @@ import { Badges, FormData } from './types'
 export const defaultValues: FormData = {
   title: '',
   labelName: '',
-  labelPriority: null,
+  labelPriority: '',
 }
 
 export const badges: Badges = [
