@@ -95,9 +95,9 @@ Go to `src/services/requestExamples` and copy the json in `api.json`. You can do
 
 ## Future steps
 
-- Add form to input values from new board
-- Dynamic labels
-- Create api to save the users to link the boards
-- Create api for board and for tasks
-- Improve tests
-- AuthLayout
+- [ ] Add form to input values for new board
+- [ ] Dynamic labels colors
+- [ ] Create api to save the users to link the boards
+- [ ] Create api for board and for tasks
+- [ ] Improve tests
+- [ ] AuthLayout
