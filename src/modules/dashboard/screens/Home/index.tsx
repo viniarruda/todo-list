@@ -22,10 +22,16 @@ export const Home = () => {
 
   if (!data?.length) {
     return (
-      <div>
-        <div>No Todo List registered!</div>
-        <Button>Create new!</Button>
-      </div>
+      <Flex
+        justify="center"
+        align="center"
+        direction="column"
+        width="full"
+        gap="spacing8"
+      >
+        <Typography fontSize="3xl">No Todo List registered!</Typography>
+        <Button disabled={true}>Create new!</Button>
+      </Flex>
     )
   }
 
@@ -57,7 +63,9 @@ export const Home = () => {
             <Typography fontSize="2xl" align="center">
               {board.title}
             </Typography>
-            <Typography fontSize="md">{board.description}</Typography>
+            <Typography fontSize="md" align="center">
+              {board.description}
+            </Typography>
 
             <Button
               onClick={() => handleGoToBoard(board.id)}

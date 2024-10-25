@@ -132,12 +132,12 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
             )}
           </Flex>
 
-          <Flex direction="column" gap="spacing2">
+          {/* <Flex direction="column" gap="spacing2">
             <Typography color="textSecondary" fontSize="md">
               Label name
             </Typography>
             <TextField {...register('labelName')} type="text" />
-          </Flex>
+          </Flex> */}
 
           <Flex direction="column" gap="spacing2">
             <Typography color="textSecondary" fontSize="md">
