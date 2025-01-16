@@ -60,7 +60,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project idea
 
-First of all, I decided to create an Todo List, so the first think that I did as validate the idea using [https://excalidraw.com/](excalidraw)
+First of all, I decided to create an Todo List, so the first think that I did as validate the idea using [https://excalidraw.com/](https://excalidraw.com/)
 
 <div>
   <img align="center" alt="excalidraw mockup" height="400" width="600" src="https://github.com/viniarruda/todo-list/blob/main/public/excalidraw_mockup.jpeg">
