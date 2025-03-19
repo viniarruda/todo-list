@@ -11,11 +11,15 @@ import { useAuthSignIn } from '@/services/auth/mutations/useAuthSignIn'
 import { routes } from '@/utils/routes'
 
 import { useUserStore } from '@/stores/useUserStore'
+import { useState } from 'react'
+import { useToast } from '@/contexts/Toast'
 
 export const FormRoot = () => {
   const { mutate, isPending } = useAuthSignIn()
 
   const { push } = useRouter()
+
+  const { open } = useToast()
 
   const { handleSubmit } = useFormContext<SignInFormData>()
 
@@ -35,6 +39,16 @@ export const FormRoot = () => {
             email: data.username,
             name: data.name,
             id: data.id,
+          })
+        },
+        onError: error => {
+          const errorMessage =
+            error.response?.status === 403
+              ? 'Invalid credentials'
+              : error.message
+
+          open(errorMessage, {
+            variant: 'error',
           })
         },
       },

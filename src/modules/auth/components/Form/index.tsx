@@ -29,7 +29,7 @@ export const FormLogin = ({ isLoading }: FormLoginProps) => {
 
       <Flex direction="column" gap="spacing4" width="full">
         <Flex direction="column" gap="spacing2">
-          <Typography color="textPrimary">E-mail</Typography>
+          <Typography color="textPrimary">Username</Typography>
           <TextField
             {...register('email')}
             type="text"

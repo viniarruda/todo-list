@@ -1,7 +1,10 @@
-import { LoginScreen } from '@/modules/auth/screens'
+import { ToastProvider } from '@/contexts/Toast'
+import { LoginScreen } from '@/modules/auth/screens/SignIn'
 
 export default function Login() {
   return (
-    <LoginScreen />
+    <ToastProvider>
+      <LoginScreen />
+    </ToastProvider>
   )
 }
