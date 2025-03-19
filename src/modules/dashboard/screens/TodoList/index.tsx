@@ -1,10 +1,10 @@
 'use client'
 
 import { Button, Flex, Typography, Spinner } from '@/design-system/components'
-import { useBoard } from '@/services/task/queries/useTodo'
+import { useBoard } from '@/services/task/queries/useTask'
 
 import { List } from '@/modules/dashboard/components/Board/List'
-import { Board } from '@/modules/dashboard/components/Board/styles'
+import { board } from '@/modules/dashboard/components/Board/styles'
 import { ClientModal } from '@/modules/dashboard/components/Board/ClientModal'
 import { useBoardStore } from '@/stores/useBoardStore'
 
@@ -47,7 +47,7 @@ export const TodoListScreen = ({ id }: TodoListScreenProps) => {
           </Flex>
 
           {data.columns && (
-            <Board>
+            <div className={board()}>
               {data.columns.map((column, index) => (
                 <List
                   key={column.title}
@@ -56,7 +56,7 @@ export const TodoListScreen = ({ id }: TodoListScreenProps) => {
                   id={id}
                 />
               ))}
-            </Board>
+            </div>
           )}
         </Flex>
       )}

@@ -20,11 +20,11 @@ export const BaseLayout = ({ title, children }: BaseLayoutProps) => {
   const { open } = useToast()
 
   if (!accessToken) {
-    replace(routes.LOGIN)
-
     open('You need to be logged in to access this page', {
       variant: 'error',
     })
+
+    replace(routes.LOGIN)
   }
 
   return (

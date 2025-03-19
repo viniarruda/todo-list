@@ -8,7 +8,7 @@ import { Priority } from '@/services/entities/Task'
 import { useBoardStore } from '@/stores/useBoardStore'
 
 import { useUpdateTask } from '@/services/task/mutations/useUpdateTask'
-import { createUseBoardKey } from '@/services/task/queries/useTodo/key'
+import { createUseBoardKey } from '@/services/task/queries/useTask/key'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { Container, EmptyCard, Header } from './styles'
@@ -123,16 +123,22 @@ export const Card = ({ todo, id, index, listIndex }: CardProps) => {
 
   return (
     <Container ref={ref} isDragging={isDragging}>
-      <Header>
+      {/* <Header>
         {todo?.labels?.map(label => (
           <Badge key={label.id} color={getBadgeVariantColor(label.priority)}>
             {label.name}
           </Badge>
         ))}
-      </Header>
-      <Flex direction="column" minHeight="16" justify="center">
+      </Header> */}
+      <Header>
         <Typography fontSize="md" fontWeight="bold">
-          {todo?.title}
+          Placa: {todo?.carPlate}
+        </Typography>
+      </Header>
+
+      <Flex direction="column" minHeight="16" justify="center">
+        <Typography fontSize="md" fontWeight="normal" color="textTertiary">
+          {todo?.description}
         </Typography>
       </Flex>
     </Container>

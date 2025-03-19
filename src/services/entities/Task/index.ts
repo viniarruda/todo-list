@@ -1,3 +1,5 @@
+import { TaskStatus } from '../Board'
+
 export enum Priority {
   Low = 'LOW',
   Medium = 'MEDIUM',
@@ -12,8 +14,14 @@ export type Label = {
 
 export type Task = {
   id: string
+  clientId: string
+  carPlate: string
+  description: string
+  serviceOrders: string[]
+  status: TaskStatus
+  totalAmount: string
+  userId: string
   createdAt: string
-  title: string
-  description?: string
-  labels?: Label[]
+  updatedAt: string
+  deletedAt: string | null
 }

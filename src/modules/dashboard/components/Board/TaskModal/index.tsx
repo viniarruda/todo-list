@@ -3,28 +3,30 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { useForm, useWatch } from 'react-hook-form'
+import { Controller, useForm, useWatch } from 'react-hook-form'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 
 import {
   Badge,
   Button,
   Flex,
+  Select,
   TextField,
   Typography,
 } from '@/design-system/components'
 
-import { Priority } from '@/services/entities/Task'
-import { useUpdateTask } from '@/services/task/mutations/useUpdateTask'
-import { createUseBoardKey } from '@/services/task/queries/useTodo/key'
 import { useBoardStore } from '@/stores/useBoardStore'
 
 import { badges, defaultValues } from './constants'
 import { schema } from './schema'
 import { CloseButton, Container, CustomBadge } from './styles'
 import { FormData, ModalProps } from './types'
+import { useListClients } from '@/services/clients/queries/useListClient'
+import { useCreateTask } from '@/services/task/mutations/useCreateTask'
 
-export const TaskModal = ({ open, onClose, id, column }: ModalProps) => {
+import { createUseTaskListKey } from '@/services/task/queries/useTaskList/key'
+
+export const TaskModal = ({ open, onClose, id, isEditing }: ModalProps) => {
   const board = useBoardStore(state => state.board)
 
   const { refresh } = useRouter()
@@ -34,7 +36,6 @@ export const TaskModal = ({ open, onClose, id, column }: ModalProps) => {
   const {
     register,
     handleSubmit,
-    setValue,
     control,
     formState: { errors },
     reset,
@@ -44,66 +45,36 @@ export const TaskModal = ({ open, onClose, id, column }: ModalProps) => {
     mode: 'onSubmit',
   })
 
-  // const labelPriority = useWatch({
-  //   control,
-  //   name: 'labelPriority',
-  // })
+  const { mutate, isPending } = useCreateTask()
 
-  const { mutate, isPending } = useUpdateTask()
-
-  // const handleSetBadge = (priority: Priority) => {
-  //   setValue('labelPriority', priority)
-  // }
+  const { data, isLoading } = useListClients()
 
   const onSubmit = (data: FormData) => {
-    const updatedColumns = [...(board?.columns || [])]
-
-    const currentColumnIndex = updatedColumns.findIndex(
-      col => col.title === column.title,
+    mutate(
+      {
+        clientId: data.clientId,
+        carPlate: data.carPlate,
+      },
+      {
+        onSettled: async () => {
+          await queryClient.invalidateQueries({
+            queryKey: createUseTaskListKey(),
+          })
+          onClose()
+        },
+      },
     )
-
-    // const newTodo = {
-    //   id: Math.random().toString(36).substring(7),
-    //   createdAt: new Date().toISOString(),
-    //   title: data.title,
-    //   labels: [
-    //     {
-    //       id: Math.random().toString(36).substring(7),
-    //       name: data.labelName,
-    //       priority: data.labelPriority as Priority,
-    //     },
-    //   ],
-    // }
-
-    // Create an updated version of the current column with the new todo
-    const updatedCurrentColumn = {
-      ...column,
-      todos: [...column.todos, newTodo],
-    }
-
-    updatedColumns[currentColumnIndex] = updatedCurrentColumn
-
-    // mutate(
-    //   {
-    //     id: board?.id ?? '',
-    //     columns: updatedColumns,
-    //   },
-    //   {
-    //     onSuccess: async data => {
-    //       onClose()
-
-    //       reset()
-
-    //       queryClient.setQueryData(createUseBoardKey({ id }), data)
-
-    //       refresh()
-    //     },
-    //   },
-    // )
   }
 
+  const clients =
+    data?.map(item => ({ label: item.name, value: item.id })) || []
+
   return (
-    <Container open={open} data-testid="formModal">
+    <Container
+      open={open}
+      data-testid="formModal"
+      size={isEditing ? 'sm' : 'md'}
+    >
       <Flex
         justify="between"
         align="center"
@@ -122,23 +93,23 @@ export const TaskModal = ({ open, onClose, id, column }: ModalProps) => {
         <Flex direction="column" gap="spacing8">
           <Flex direction="column" gap="spacing2">
             <Typography color="textSecondary" fontSize="md">
-              Nome *
+              Cliente *
             </Typography>
-            <TextField {...register('name')} type="text" />
-            {errors.name && (
+            <Controller
+              name="clientId"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  options={clients}
+                  value={field.value}
+                  placeholder="Escolha um cliente"
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            {errors.clientId && (
               <Typography fontSize="sm" color="feedbackError">
-                {errors.name.message}
-              </Typography>
-            )}
-          </Flex>
-          <Flex direction="column" gap="spacing2">
-            <Typography color="textSecondary" fontSize="md">
-              Telefone *
-            </Typography>
-            <TextField {...register('phone')} type="text" />
-            {errors.phone && (
-              <Typography fontSize="sm" color="feedbackError">
-                {errors.phone.message}
+                {errors.clientId.message}
               </Typography>
             )}
           </Flex>
@@ -153,18 +124,6 @@ export const TaskModal = ({ open, onClose, id, column }: ModalProps) => {
               </Typography>
             )}
           </Flex>
-          <Flex direction="column" gap="spacing2">
-            <Typography color="textSecondary" fontSize="md">
-              CPF/CNPJ *
-            </Typography>
-            <TextField {...register('taxId')} type="text" />
-            {errors.taxId && (
-              <Typography fontSize="sm" color="feedbackError">
-                {errors.taxId.message}
-              </Typography>
-            )}
-          </Flex>
-
           {/* <Flex direction="column" gap="spacing2">
             <Typography color="textSecondary" fontSize="md">
               Label name

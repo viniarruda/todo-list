@@ -5,6 +5,7 @@ export const microservices = {
   signIn: apiUrl + '/auth/login',
   boards: apiUrl + '/boards',
   board: (id: string) => apiUrl + `/boards/${id}`,
+  tasks: apiUrl + '/tasks',
   task: (id: string) => apiUrl + `/tasks/${id}`,
   clients: apiUrl + '/clients',
   me: apiUrl + '/me',

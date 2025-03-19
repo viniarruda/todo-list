@@ -11,9 +11,7 @@ export const useCreateTask = (
 ) => {
   return useMutation<CreateTaskData, AxiosError, CreateTaskParams>({
     mutationFn: body => {
-      const { id, ...rest } = body
-
-      return createTask(microservices.task(id), rest)
+      return createTask(microservices.tasks, body)
     },
     ...options,
   })

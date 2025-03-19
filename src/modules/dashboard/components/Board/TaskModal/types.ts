@@ -4,15 +4,13 @@ import { Priority } from '@/services/entities/Task'
 export type ModalProps = {
   open: boolean
   onClose: () => void
-  id: string
-  column: Column
+  id?: string
+  isEditing?: boolean
 }
 
 export type FormData = {
-  name: string
-  phone: string
+  clientId: string
   carPlate: string
-  taxId: string
   // labelName: string
   // labelPriority: Priority | ''
 }

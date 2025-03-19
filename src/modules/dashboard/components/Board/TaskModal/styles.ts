@@ -28,6 +28,21 @@ export const Container = styled(`dialog`, {
     boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.4)',
     zIndex: '100',
   },
+
+  variants: {
+    size: {
+      md: {
+        height: '500px',
+      },
+      sm: {
+        height: '400px',
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: 'md',
+  },
 })
 
 export const CustomBadge = styled(Badge, {

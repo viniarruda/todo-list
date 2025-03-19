@@ -4,13 +4,30 @@ import { styled } from '@styled-system/jsx'
 export const Container = styled(Flex, {
   base: {
     flexDirection: 'column',
-    flex: 1,
+    // flex: 1,
+    // flexBasis: 200,
+    width: '200px',
+    minWidth: '200px',
+    height: '700px',
+    overflowY: 'auto',
     padding: '2',
-    width: '1000px',
-    overflowX: 'auto',
 
     '& + div': {
       borderLeft: '1px solid rgba(255, 255, 255, 0.5)',
+    },
+
+    _scrollbar: {
+      width: '2',
+      height: '2',
+      backgroundColor: '#888',
+    },
+    _scrollbarThumb: {
+      backgroundColor: '#888',
+      borderRadius: '$large',
+    },
+    _scrollbarTrack: {
+      backgroundColor: 'backgroundPrimary',
+      borderBottomRightRadius: '$large',
     },
   },
 

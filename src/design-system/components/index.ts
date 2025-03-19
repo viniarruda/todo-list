@@ -13,4 +13,4 @@ export {
 } from './Display'
 
 // Form
-export { TextField } from './Form'
+export { TextField, Select } from './Form'

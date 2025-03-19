@@ -1,12 +1,13 @@
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 
 import { CreateTaskData, CreateTaskParams } from './types'
+import { axiosInstance } from '@/libs/axios'
 
 export const createTask = async (
   microservice: string,
   body: Omit<CreateTaskParams, 'id'>,
 ): Promise<CreateTaskData> => {
-  const { data } = await axios.post<
+  const { data } = await axiosInstance.post<
     CreateTaskData,
     AxiosResponse<CreateTaskData>,
     Omit<CreateTaskParams, 'id'>

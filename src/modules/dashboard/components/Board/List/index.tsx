@@ -11,11 +11,16 @@ import { TaskModal } from '@/modules/dashboard/components/Board/TaskModal'
 import { ListProps } from './types'
 
 import { ButtonIcon, Container, Header } from './styles'
+import { useTaskList } from '@/services/task/queries/useTaskList'
 
 export const List = ({ column, listIndex, id }: ListProps) => {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   const toggleModal = () => setShowModal(!showModal)
+
+  const { data, isLoading } = useTaskList()
+
+  const columnData = data?.filter(task => task.status === column.taskStatus)
 
   return (
     <Container done={column.done}>
@@ -32,23 +37,18 @@ export const List = ({ column, listIndex, id }: ListProps) => {
         </Flex>
       </Header>
       <ul>
-        {column.todos?.map((todo, index, todos) => (
+        {columnData?.map((task, index, tasks) => (
           <Card
-            key={todo.id}
+            key={task.id}
             id={id}
             index={index}
             listIndex={listIndex}
-            todo={todo}
+            todo={task}
           />
         ))}
       </ul>
       <Card id={id} index={column.todos.length} listIndex={listIndex} />
-      {/* <TaskModal
-        open={showModal}
-        onClose={toggleModal}
-        id={id}
-        column={column}
-      /> */}
+      <TaskModal open={showModal} onClose={toggleModal} id={id} isEditing />
     </Container>
   )
 }

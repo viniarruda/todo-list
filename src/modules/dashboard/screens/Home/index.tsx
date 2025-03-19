@@ -3,7 +3,7 @@
 import { FaChevronRight } from 'react-icons/fa6'
 
 import { Button, Flex, Title, Typography } from '@/design-system/components'
-import { useBoardList } from '@/services/task/queries/useTodoList'
+import { useBoardList } from '@/services/board/queries/useBoardList'
 import { routes } from '@/utils/routes'
 import { useRouter } from 'next/navigation'
 import { Spinner } from '@/design-system/components/Display/Spinner'

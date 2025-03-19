@@ -1,4 +1,4 @@
-import { Todo } from '@/services/entities/Task'
+import { Task } from '@/services/entities/Task'
 
 export enum TaskStatus {
   Registered = 'REGISTERED',
@@ -14,7 +14,7 @@ export type Column = {
   title: string
   creatable: boolean
   done: boolean
-  todos: Todo[]
+  todos: Task[]
   taskStatus: TaskStatus
 }
 

@@ -1,8 +1,8 @@
 import { Column } from '@/services/entities/Board'
-import { Priority, Todo } from '@/services/entities/Task'
+import { Priority, Task } from '@/services/entities/Task'
 
 export type CardProps = {
-  todo?: Todo
+  todo?: Task
   index: number
   listIndex: number
   id: string
@@ -20,7 +20,7 @@ export type DragItemProps = {
 }
 
 export type UpdateBoardCardsOrder = {
-  todos: Todo[]
+  todos: Task[]
   destinationIndex: number
   sourceIndex: number
 }

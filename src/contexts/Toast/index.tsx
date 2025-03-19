@@ -76,6 +76,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 // Custom Hook for using Toast
 export const useToast = () => {
   const context = useContext(ToastContext)
+
   if (!context) {
     throw new Error('useToast must be used within a ToastProvider')
   }

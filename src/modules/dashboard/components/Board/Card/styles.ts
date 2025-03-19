@@ -49,5 +49,6 @@ export const EmptyCard = styled(Flex, {
     background: 'transparent',
     boxShadow: 'none',
     height: '130px',
+    minHeight: '130px',
   },
 })

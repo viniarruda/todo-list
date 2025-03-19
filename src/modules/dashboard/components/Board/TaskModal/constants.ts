@@ -2,10 +2,8 @@ import { Priority } from '@/services/entities/Task'
 import { Badges, FormData } from './types'
 
 export const defaultValues: FormData = {
-  name: '',
-  phone: '',
+  clientId: '',
   carPlate: '',
-  taxId: '',
 }
 
 export const badges: Badges = [
