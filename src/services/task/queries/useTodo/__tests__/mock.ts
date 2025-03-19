@@ -1,6 +1,6 @@
-import { Priority } from '@/services/entities/Todo'
+import { Priority } from '@/services/entities/Task'
 
-import { BoardData, BoardParams } from '@/services/todo/queries/useTodo/types'
+import { BoardData, BoardParams } from '@/services/task/queries/useTodo/types'
 
 export const todoMock: BoardData = {
   id: '1',

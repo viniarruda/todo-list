@@ -14,9 +14,9 @@ import {
   Typography,
 } from '@/design-system/components'
 
-import { Priority } from '@/services/entities/Todo'
-import { useUpdateTodo } from '@/services/todo/mutations/useUpdateTodo'
-import { createUseBoardKey } from '@/services/todo/queries/useTodo/key'
+import { Priority } from '@/services/entities/Task'
+import { useUpdateTask } from '@/services/task/mutations/useUpdateTask'
+import { createUseBoardKey } from '@/services/task/queries/useTodo/key'
 import { useBoardStore } from '@/stores/useBoardStore'
 
 import { badges, defaultValues } from './constants'
@@ -24,7 +24,7 @@ import { schema } from './schema'
 import { CloseButton, Container, CustomBadge } from './styles'
 import { FormData, ModalProps } from './types'
 
-export const Modal = ({ open, onClose, id, column }: ModalProps) => {
+export const TaskModal = ({ open, onClose, id, column }: ModalProps) => {
   const board = useBoardStore(state => state.board)
 
   const { refresh } = useRouter()
@@ -44,16 +44,16 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
     mode: 'onSubmit',
   })
 
-  const labelPriority = useWatch({
-    control,
-    name: 'labelPriority',
-  })
+  // const labelPriority = useWatch({
+  //   control,
+  //   name: 'labelPriority',
+  // })
 
-  const { mutate, isPending } = useUpdateTodo()
+  const { mutate, isPending } = useUpdateTask()
 
-  const handleSetBadge = (priority: Priority) => {
-    setValue('labelPriority', priority)
-  }
+  // const handleSetBadge = (priority: Priority) => {
+  //   setValue('labelPriority', priority)
+  // }
 
   const onSubmit = (data: FormData) => {
     const updatedColumns = [...(board?.columns || [])]
@@ -62,18 +62,18 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
       col => col.title === column.title,
     )
 
-    const newTodo = {
-      id: Math.random().toString(36).substring(7),
-      createdAt: new Date().toISOString(),
-      title: data.title,
-      labels: [
-        {
-          id: Math.random().toString(36).substring(7),
-          name: data.labelName,
-          priority: data.labelPriority as Priority,
-        },
-      ],
-    }
+    // const newTodo = {
+    //   id: Math.random().toString(36).substring(7),
+    //   createdAt: new Date().toISOString(),
+    //   title: data.title,
+    //   labels: [
+    //     {
+    //       id: Math.random().toString(36).substring(7),
+    //       name: data.labelName,
+    //       priority: data.labelPriority as Priority,
+    //     },
+    //   ],
+    // }
 
     // Create an updated version of the current column with the new todo
     const updatedCurrentColumn = {
@@ -83,23 +83,23 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
 
     updatedColumns[currentColumnIndex] = updatedCurrentColumn
 
-    mutate(
-      {
-        id: board?.id ?? '',
-        columns: updatedColumns,
-      },
-      {
-        onSuccess: async data => {
-          onClose()
+    // mutate(
+    //   {
+    //     id: board?.id ?? '',
+    //     columns: updatedColumns,
+    //   },
+    //   {
+    //     onSuccess: async data => {
+    //       onClose()
 
-          reset()
+    //       reset()
 
-          queryClient.setQueryData(createUseBoardKey({ id }), data)
+    //       queryClient.setQueryData(createUseBoardKey({ id }), data)
 
-          refresh()
-        },
-      },
-    )
+    //       refresh()
+    //     },
+    //   },
+    // )
   }
 
   return (
@@ -112,7 +112,7 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
         borderBottom="1px solid rgba(255,255,255, 0.5)"
       >
         <Typography color="textPrimary" fontSize="2xl">
-          Create new task
+          Criar nova tarefa
         </Typography>
         <CloseButton onClick={onClose}>
           <IoMdCloseCircleOutline size="20px" color="#fff" />
@@ -122,12 +122,45 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
         <Flex direction="column" gap="spacing8">
           <Flex direction="column" gap="spacing2">
             <Typography color="textSecondary" fontSize="md">
-              Task name *
+              Nome *
             </Typography>
-            <TextField {...register('title')} type="text" />
-            {errors.title && (
+            <TextField {...register('name')} type="text" />
+            {errors.name && (
               <Typography fontSize="sm" color="feedbackError">
-                {errors.title.message}
+                {errors.name.message}
+              </Typography>
+            )}
+          </Flex>
+          <Flex direction="column" gap="spacing2">
+            <Typography color="textSecondary" fontSize="md">
+              Telefone *
+            </Typography>
+            <TextField {...register('phone')} type="text" />
+            {errors.phone && (
+              <Typography fontSize="sm" color="feedbackError">
+                {errors.phone.message}
+              </Typography>
+            )}
+          </Flex>
+          <Flex direction="column" gap="spacing2">
+            <Typography color="textSecondary" fontSize="md">
+              Placa do carro *
+            </Typography>
+            <TextField {...register('carPlate')} type="text" />
+            {errors.carPlate && (
+              <Typography fontSize="sm" color="feedbackError">
+                {errors.carPlate.message}
+              </Typography>
+            )}
+          </Flex>
+          <Flex direction="column" gap="spacing2">
+            <Typography color="textSecondary" fontSize="md">
+              CPF/CNPJ *
+            </Typography>
+            <TextField {...register('taxId')} type="text" />
+            {errors.taxId && (
+              <Typography fontSize="sm" color="feedbackError">
+                {errors.taxId.message}
               </Typography>
             )}
           </Flex>
@@ -139,7 +172,7 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
             <TextField {...register('labelName')} type="text" />
           </Flex> */}
 
-          <Flex direction="column" gap="spacing2">
+          {/* <Flex direction="column" gap="spacing2">
             <Typography color="textSecondary" fontSize="md">
               Label priority *
             </Typography>
@@ -158,14 +191,14 @@ export const Modal = ({ open, onClose, id, column }: ModalProps) => {
                 {errors.labelPriority.message}
               </Typography>
             )}
-          </Flex>
+          </Flex> */}
           <Flex justify="center" align="center">
             <Button
               variant="success"
               disabled={isPending}
               isLoading={isPending}
             >
-              Submit
+              Enviar
             </Button>
           </Flex>
         </Flex>

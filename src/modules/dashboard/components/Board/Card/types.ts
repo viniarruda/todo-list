@@ -1,5 +1,5 @@
 import { Column } from '@/services/entities/Board'
-import { Priority, Todo } from '@/services/entities/Todo'
+import { Priority, Todo } from '@/services/entities/Task'
 
 export type CardProps = {
   todo?: Todo

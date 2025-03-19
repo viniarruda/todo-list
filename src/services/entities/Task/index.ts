@@ -10,7 +10,7 @@ export type Label = {
   priority: Priority
 }
 
-export type Todo = {
+export type Task = {
   id: string
   createdAt: string
   title: string

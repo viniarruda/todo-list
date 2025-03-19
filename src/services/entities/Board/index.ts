@@ -1,4 +1,4 @@
-import { Todo } from '@/services/entities/Todo'
+import { Todo } from '@/services/entities/Task'
 
 export enum TaskStatus {
   Registered = 'REGISTERED',

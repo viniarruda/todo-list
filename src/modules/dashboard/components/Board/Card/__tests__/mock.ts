@@ -1,4 +1,4 @@
-import { Priority, Todo } from '@/services/entities/Todo'
+import { Priority, Todo } from '@/services/entities/Task'
 
 export const todoMock: Todo = {
   id: '1',

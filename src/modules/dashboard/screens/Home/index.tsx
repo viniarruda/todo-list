@@ -3,9 +3,10 @@
 import { FaChevronRight } from 'react-icons/fa6'
 
 import { Button, Flex, Title, Typography } from '@/design-system/components'
-import { useBoardList } from '@/services/todo/queries/useTodoList'
+import { useBoardList } from '@/services/task/queries/useTodoList'
 import { routes } from '@/utils/routes'
 import { useRouter } from 'next/navigation'
+import { Spinner } from '@/design-system/components/Display/Spinner'
 
 export const Home = () => {
   const { push } = useRouter()
@@ -17,7 +18,7 @@ export const Home = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Spinner show />
   }
 
   if (!data?.length) {

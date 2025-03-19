@@ -1,5 +1,5 @@
 import { Column } from '@/services/entities/Board'
-import { Priority } from '@/services/entities/Todo'
+import { Priority } from '@/services/entities/Task'
 
 export type ModalProps = {
   open: boolean
@@ -9,9 +9,12 @@ export type ModalProps = {
 }
 
 export type FormData = {
-  title: string
-  labelName: string
-  labelPriority: Priority | ''
+  name: string
+  phone: string
+  carPlate: string
+  taxId: string
+  // labelName: string
+  // labelPriority: Priority | ''
 }
 
 export type Badges = {

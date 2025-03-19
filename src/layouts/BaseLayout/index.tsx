@@ -15,11 +15,11 @@ import { useToast } from '@/contexts/Toast'
 export const BaseLayout = ({ title, children }: BaseLayoutProps) => {
   const { replace } = useRouter()
 
-  const userInfo = useUserStore(state => state.user)
+  const accessToken = localStorage.getItem('accessToken')
 
   const { open } = useToast()
 
-  if (!userInfo) {
+  if (!accessToken) {
     replace(routes.LOGIN)
 
     open('You need to be logged in to access this page', {

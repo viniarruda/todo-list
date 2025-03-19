@@ -1,5 +1,5 @@
 import { Column } from '@/services/entities/Board'
-import { Todo } from '@/services/entities/Todo'
+import { Todo } from '@/services/entities/Task'
 import { UpdateBoardCardsOrder, UpdateBoardColumns } from './types'
 
 export const updateBoardCardsOrder = ({

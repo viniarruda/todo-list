@@ -1,6 +1,5 @@
 export const routes = {
-  HOME: '/',
-  LOGIN: '/login/',
+  LOGIN: '/',
   REGISTER: '/register/',
   DASHBOARD: '/dashboard/',
   DASHBOARD_TODO_LISTS: (boardId: string) => `/dashboard/todo-lists/${boardId}`,

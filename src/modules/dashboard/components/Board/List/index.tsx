@@ -6,7 +6,7 @@ import { MdAdd } from 'react-icons/md'
 import { Flex, Typography } from '@/design-system/components'
 
 import { Card } from '@/modules/dashboard/components/Board/Card'
-import { Modal } from '@/modules/dashboard/components/Board/Modal'
+import { TaskModal } from '@/modules/dashboard/components/Board/TaskModal'
 
 import { ListProps } from './types'
 
@@ -20,10 +20,10 @@ export const List = ({ column, listIndex, id }: ListProps) => {
   return (
     <Container done={column.done}>
       <Header>
-        <Typography fontSize="xl" color="textSecondary">
+        <Typography fontSize="md" color="textSecondary">
           {column.title}
         </Typography>
-        <Flex height="42px" width="42px">
+        <Flex height="42px" width="42px" ml="4">
           {column.creatable && (
             <ButtonIcon onClick={toggleModal}>
               <MdAdd size="16px" color="#fff" />
@@ -43,7 +43,12 @@ export const List = ({ column, listIndex, id }: ListProps) => {
         ))}
       </ul>
       <Card id={id} index={column.todos.length} listIndex={listIndex} />
-      <Modal open={showModal} onClose={toggleModal} id={id} column={column} />
+      {/* <TaskModal
+        open={showModal}
+        onClose={toggleModal}
+        id={id}
+        column={column}
+      /> */}
     </Container>
   )
 }

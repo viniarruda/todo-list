@@ -2,7 +2,15 @@
 export { Flex } from './Layout/Flex'
 
 // Display
-export { Avatar, Badge, Button, Loading, Title, Typography } from './Display'
+export {
+  Avatar,
+  Badge,
+  Button,
+  Loading,
+  Title,
+  Typography,
+  Spinner,
+} from './Display'
 
 // Form
 export { TextField } from './Form'

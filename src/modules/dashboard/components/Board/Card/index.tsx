@@ -4,11 +4,11 @@ import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 
 import { Badge, Flex, Typography } from '@/design-system/components'
-import { Priority } from '@/services/entities/Todo'
+import { Priority } from '@/services/entities/Task'
 import { useBoardStore } from '@/stores/useBoardStore'
 
-import { useUpdateTodo } from '@/services/todo/mutations/useUpdateTodo'
-import { createUseBoardKey } from '@/services/todo/queries/useTodo/key'
+import { useUpdateTask } from '@/services/task/mutations/useUpdateTask'
+import { createUseBoardKey } from '@/services/task/queries/useTodo/key'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { Container, EmptyCard, Header } from './styles'
@@ -20,7 +20,7 @@ export const Card = ({ todo, id, index, listIndex }: CardProps) => {
 
   const board = useBoardStore(state => state.board)
 
-  const { mutate } = useUpdateTodo()
+  const { mutate } = useUpdateTask()
 
   const queryClient = useQueryClient()
 

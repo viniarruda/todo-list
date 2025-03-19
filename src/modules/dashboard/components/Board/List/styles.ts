@@ -5,11 +5,9 @@ export const Container = styled(Flex, {
   base: {
     flexDirection: 'column',
     flex: 1,
-    // flexGrow: 0,
-    // flexShrink: 0,
-    // flexBasis: 200,
-
     padding: '2',
+    width: '1000px',
+    overflowX: 'auto',
 
     '& + div': {
       borderLeft: '1px solid rgba(255, 255, 255, 0.5)',
