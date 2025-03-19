@@ -2,7 +2,7 @@ import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 
 import { AxiosError } from 'axios'
 
-import { baseUrl } from '@/services/constants'
+import { apiUrl } from '@/services/constants'
 
 import { createUseBoardKey } from './key'
 import { board } from './request'
@@ -14,7 +14,7 @@ export const useBoard = (
 ) => {
   return useQuery<BoardData, AxiosError, BoardData>({
     queryKey: createUseBoardKey(params),
-    queryFn: () => board(baseUrl, params),
+    queryFn: () => board(apiUrl, params),
     ...options,
   })
 }

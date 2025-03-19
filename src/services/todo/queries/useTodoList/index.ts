@@ -13,7 +13,7 @@ export const useBoardList = (
 ) => {
   return useQuery<BoardListData, AxiosError>({
     queryKey: createUseBoardListKey(),
-    queryFn: () => boardList(microservices.todoList),
+    queryFn: () => boardList(microservices.boards),
     ...options,
   })
 }

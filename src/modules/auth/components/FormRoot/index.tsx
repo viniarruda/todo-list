@@ -35,11 +35,7 @@ export const FormRoot = () => {
         onSuccess: data => {
           push(routes.DASHBOARD)
 
-          saveNewUser({
-            email: data.username,
-            name: data.name,
-            id: data.id,
-          })
+          localStorage.setItem('accessToken', data.accessToken)
         },
         onError: error => {
           const errorMessage =

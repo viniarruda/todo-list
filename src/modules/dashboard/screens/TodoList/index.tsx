@@ -2,7 +2,6 @@
 
 import { Flex, Title, Typography } from '@/design-system/components'
 import { useBoard } from '@/services/todo/queries/useTodo'
-import { createUseBoardKey } from '@/services/todo/queries/useTodo/key'
 
 import { List } from '@/modules/dashboard/components/Board/List'
 import { Board } from '@/modules/dashboard/components/Board/styles'

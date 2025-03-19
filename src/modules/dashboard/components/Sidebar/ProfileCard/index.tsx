@@ -1,7 +1,7 @@
 import { Avatar, Flex, Typography } from '@/design-system/components'
 import { ProfileCardProps } from './types'
 
-export const ProfileCard = ({ user }: ProfileCardProps) => {
+export const ProfileCard = ({ username }: ProfileCardProps) => {
   return (
     <Flex
       bg="backgroundTertiary"
@@ -13,8 +13,8 @@ export const ProfileCard = ({ user }: ProfileCardProps) => {
       width="full"
       borderRadius="md"
     >
-      {user?.name && <Avatar name={user.name} size="xlarge" />}
-      <Typography color="textPrimary">{user?.name}</Typography>
+      {username && <Avatar name={username} size="xlarge" />}
+      <Typography color="textPrimary">{username}</Typography>
     </Flex>
   )
 }

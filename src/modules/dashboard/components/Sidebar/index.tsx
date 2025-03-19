@@ -6,9 +6,10 @@ import { useUserStore } from '@/stores/useUserStore'
 import { menuItens } from './constants'
 import { MenuItem } from './MenuItem'
 import { ProfileCard } from './ProfileCard'
+import { useMe } from '@/services/me/queries/useMe'
 
 export const Sidebar = () => {
-  const userInfo = useUserStore(state => state.user)
+  const { data } = useMe()
 
   return (
     <Flex
@@ -37,7 +38,7 @@ export const Sidebar = () => {
         ))}
       </Flex>
       <Flex px="4" width="full" marginBottom="4">
-        <ProfileCard user={userInfo} />
+        <ProfileCard username={data?.username ?? ''} />
       </Flex>
     </Flex>
   )

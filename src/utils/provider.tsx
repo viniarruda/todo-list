@@ -1,5 +1,6 @@
 'use client'
 
+import { ToastProvider } from '@/contexts/Toast'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import { DndProvider } from 'react-dnd'
@@ -22,7 +23,9 @@ function Providers({ children }: React.PropsWithChildren) {
 
   return (
     <QueryClientProvider client={client}>
-      <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+      <ToastProvider>
+        <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+      </ToastProvider>
     </QueryClientProvider>
   )
 }

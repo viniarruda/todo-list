@@ -3,12 +3,13 @@ export const apiUrl = 'https://todo-list-api-njb4.onrender.com'
 
 export const microservices = {
   signIn: apiUrl + '/auth/login',
-  todoList: baseUrl + '/todoList',
-  todo: (id: string) => baseUrl + `/todoList/${id}`,
+  boards: apiUrl + '/boards',
+  board: (id: string) => apiUrl + `/boards/${id}`,
+  me: apiUrl + '/me',
 }
 
 export const routes = {
   signIn: '/login',
   todoList: '/todoList',
-  todo: (id: string) => `/todoList/${id}`,
+  board: (id: string) => `/boards/${id}`,
 }
