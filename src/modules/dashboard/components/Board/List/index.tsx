@@ -13,7 +13,7 @@ import { ListProps } from './types'
 import { ButtonIcon, Container, Header } from './styles'
 import { useTaskList } from '@/services/task/queries/useTaskList'
 
-export const List = ({ column, listIndex, id }: ListProps) => {
+export const List = ({ column, listIndex, id, columns }: ListProps) => {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   const toggleModal = () => setShowModal(!showModal)
@@ -44,10 +44,11 @@ export const List = ({ column, listIndex, id }: ListProps) => {
             index={index}
             listIndex={listIndex}
             todo={task}
+            columns={columns}
           />
         ))}
       </ul>
-      <Card id={id} index={column.todos.length} listIndex={listIndex} />
+      <Card id={id} index={(columnData || [])?.length} listIndex={listIndex} />
       <TaskModal open={showModal} onClose={toggleModal} id={id} isEditing />
     </Container>
   )

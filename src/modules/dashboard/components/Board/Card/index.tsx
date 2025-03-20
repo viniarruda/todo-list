@@ -5,20 +5,29 @@ import { useDrag, useDrop } from 'react-dnd'
 
 import { Badge, Flex, Typography } from '@/design-system/components'
 import { Priority } from '@/services/entities/Task'
-import { useBoardStore } from '@/stores/useBoardStore'
 
 import { useUpdateTask } from '@/services/task/mutations/useUpdateTask'
 import { createUseBoardKey } from '@/services/task/queries/useTask/key'
+import { createUseTaskListKey } from '@/services/task/queries/useTaskList/key'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { Container, EmptyCard, Header } from './styles'
 import { badgeColor, CardProps, DragItemProps } from './types'
 import { updateBoardColumns } from './utils'
+import { TaskStatus } from '@/services/entities/Board'
 
-export const Card = ({ todo, id, index, listIndex }: CardProps) => {
+export const Card = ({ todo, id, index, listIndex, columns }: CardProps) => {
   const ref = useRef<HTMLDivElement | null>(null)
 
-  const board = useBoardStore(state => state.board)
+  const statusMap = [
+    TaskStatus.Registered,
+    TaskStatus.OnBudget,
+    TaskStatus.BudgetCompleted,
+    TaskStatus.WaitingConfirmation,
+    TaskStatus.WaitingPayment,
+    TaskStatus.InProgress,
+    TaskStatus.ServiceCompleted,
+  ]
 
   const { mutate } = useUpdateTask()
 
@@ -41,7 +50,7 @@ export const Card = ({ todo, id, index, listIndex }: CardProps) => {
 
   const [, dropRef] = useDrop({
     accept: 'CARD',
-    hover(item: DragItemProps, monitor) {
+    hover(item: DragItemProps) {
       const draggedListIndex = item.listIndex
       const targetListIndex = listIndex
 
@@ -49,59 +58,35 @@ export const Card = ({ todo, id, index, listIndex }: CardProps) => {
       const draggedIndex = item.index
       const targetIndex = index
 
-      if (
-        draggedIndex === targetIndex &&
-        draggedListIndex === targetListIndex
-      ) {
+      // Prevent unnecessary updates
+      if (draggedListIndex === targetListIndex) {
         return
       }
 
-      const targetSize = ref.current?.getBoundingClientRect() // returns the size of the element
+      const newStatus = statusMap[targetListIndex]
 
-      if (targetSize) {
-        const targetCenter = (targetSize.bottom - targetSize.top) / 2
+      if (!newStatus) return
 
-        const draggedOffset = monitor.getClientOffset() // returns the position of the card
-
-        const draggedTop = draggedOffset && draggedOffset.y - targetSize.top
-
-        if (draggedTop) {
-          if (draggedIndex < targetIndex && draggedTop < targetCenter) {
-            // if you try to drag the dragged card before the target card, do nothing
-            return
-          }
-
-          if (draggedIndex > targetIndex && draggedTop > targetCenter) {
-            // if you try to drag the dragged card after the target card, do nothing
-            return
-          }
-        }
-
-        const updatedColumns = updateBoardColumns({
-          columns: board?.columns,
-          destinationIndex: targetIndex,
-          sourceIndex: draggedIndex,
-          draggedListIndex,
-          targetListIndex,
-        })
-
-        mutate(
-          {
-            id: id,
-            columns: updatedColumns,
-          },
-          {
-            onSuccess: data => {
-              queryClient.setQueryData(createUseBoardKey({ id }), data)
-
-              refresh()
+      if (item.id) {
+        setTimeout(() => {
+          mutate(
+            {
+              id: item.id,
+              status: newStatus,
             },
-          },
-        )
-
-        item.index = targetIndex
-        item.listIndex = targetListIndex
+            {
+              onSuccess: async data => {
+                await queryClient.invalidateQueries({
+                  queryKey: createUseTaskListKey(),
+                })
+                refresh()
+              },
+            },
+          )
+        }, 300)
       }
+
+      item.listIndex = targetListIndex
     },
   })
 

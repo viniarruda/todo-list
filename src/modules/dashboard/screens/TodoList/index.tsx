@@ -48,10 +48,11 @@ export const TodoListScreen = ({ id }: TodoListScreenProps) => {
 
           {data.columns && (
             <div className={board()}>
-              {data.columns.map((column, index) => (
+              {data.columns.map((column, index, columns) => (
                 <List
                   key={column.title}
                   column={column}
+                  columns={columns}
                   listIndex={index}
                   id={id}
                 />

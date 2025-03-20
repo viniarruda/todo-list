@@ -6,6 +6,7 @@ export type CardProps = {
   index: number
   listIndex: number
   id: string
+  columns?: Column[]
 }
 
 export type badgeColor = {
