@@ -7,6 +7,8 @@ export type CardProps = {
   listIndex: number
   id: string
   columns?: Column[]
+  toggleDropDownMenu?: (id: string) => void
+  openMenuId?: string
 }
 
 export type badgeColor = {

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button, Flex, Typography, Spinner } from '@/design-system/components'
-import { useBoard } from '@/services/task/queries/useTask'
+import { useBoard } from '@/services/board/queries/useBoard'
 
 import { List } from '@/modules/dashboard/components/Board/List'
 import { board } from '@/modules/dashboard/components/Board/styles'

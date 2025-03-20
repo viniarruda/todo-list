@@ -4,7 +4,7 @@ export type UpdateTaskData = Board
 
 export type UpdateTaskParams = {
   id: string
-  status: TaskStatus
+  status?: TaskStatus
   serviceOrders?: string[]
   totalAmount?: number
   description?: string

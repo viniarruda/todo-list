@@ -1,7 +1,7 @@
-import { Board } from '@/services/entities/Board'
+import { Task } from '@/services/entities/Task'
 
-export type BoardData = Board
+export type TaskData = Task
 
-export type BoardParams = {
+export type TaskParams = {
   id: string
 }

@@ -1,22 +1,39 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
+import { useRouter } from 'next/navigation'
+import { MdMoreVert } from 'react-icons/md'
+import { MdDirectionsCar } from 'react-icons/md'
 
-import { Badge, Flex, Typography } from '@/design-system/components'
+import {
+  Badge,
+  DropdownMenu,
+  Flex,
+  Typography,
+} from '@/design-system/components'
 import { Priority } from '@/services/entities/Task'
 
 import { useUpdateTask } from '@/services/task/mutations/useUpdateTask'
-import { createUseBoardKey } from '@/services/task/queries/useTask/key'
 import { createUseTaskListKey } from '@/services/task/queries/useTaskList/key'
 import { useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { Container, EmptyCard, Header } from './styles'
-import { badgeColor, CardProps, DragItemProps } from './types'
-import { updateBoardColumns } from './utils'
 import { TaskStatus } from '@/services/entities/Board'
 
-export const Card = ({ todo, id, index, listIndex, columns }: CardProps) => {
+import { Container, EmptyCard, Header, OptionsMenu } from './styles'
+import { badgeColor, CardProps, DragItemProps } from './types'
+import { EditTaskModal } from '../EditTaskModal'
+
+export const Card = ({
+  todo,
+  index,
+  listIndex,
+  toggleDropDownMenu,
+  openMenuId,
+}: CardProps) => {
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false)
+
+  const toggleEditModal = () => setOpenEditModal(!openEditModal)
+
   const ref = useRef<HTMLDivElement | null>(null)
 
   const statusMap = [
@@ -108,24 +125,41 @@ export const Card = ({ todo, id, index, listIndex, columns }: CardProps) => {
 
   return (
     <Container ref={ref} isDragging={isDragging}>
-      {/* <Header>
-        {todo?.labels?.map(label => (
-          <Badge key={label.id} color={getBadgeVariantColor(label.priority)}>
-            {label.name}
-          </Badge>
-        ))}
-      </Header> */}
       <Header>
+        <MdDirectionsCar size="16px" color="#000" />
         <Typography fontSize="md" fontWeight="bold">
           Placa: {todo?.carPlate}
         </Typography>
+
+        <DropdownMenu
+          isOpen={openMenuId === todo.id}
+          setIsOpen={() => toggleDropDownMenu?.(todo.id)}
+          handleEdit={() => {
+            toggleDropDownMenu?.(todo.id)
+            toggleEditModal()
+          }}
+          handleDelete={() => {}}
+        >
+          <OptionsMenu onClick={() => toggleDropDownMenu?.(todo.id)}>
+            <MdMoreVert size="20px" color="#000" />
+          </OptionsMenu>
+        </DropdownMenu>
       </Header>
 
       <Flex direction="column" minHeight="16" justify="center">
         <Typography fontSize="md" fontWeight="normal" color="textTertiary">
           {todo?.description}
         </Typography>
+        <Typography fontSize="md" fontWeight="normal" color="textTertiary">
+          R$ {todo?.totalAmount}
+        </Typography>
       </Flex>
+
+      <EditTaskModal
+        id={todo.id}
+        open={openEditModal}
+        onClose={toggleEditModal}
+      />
     </Container>
   )
 }

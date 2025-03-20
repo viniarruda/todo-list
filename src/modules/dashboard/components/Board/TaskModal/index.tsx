@@ -26,11 +26,7 @@ import { useCreateTask } from '@/services/task/mutations/useCreateTask'
 
 import { createUseTaskListKey } from '@/services/task/queries/useTaskList/key'
 
-export const TaskModal = ({ open, onClose, id, isEditing }: ModalProps) => {
-  const board = useBoardStore(state => state.board)
-
-  const { refresh } = useRouter()
-
+export const TaskModal = ({ open, onClose }: ModalProps) => {
   const queryClient = useQueryClient()
 
   const {
@@ -70,11 +66,7 @@ export const TaskModal = ({ open, onClose, id, isEditing }: ModalProps) => {
     data?.map(item => ({ label: item.name, value: item.id })) || []
 
   return (
-    <Container
-      open={open}
-      data-testid="formModal"
-      size={isEditing ? 'sm' : 'md'}
-    >
+    <Container open={open} data-testid="formModal" size={'md'}>
       <Flex
         justify="between"
         align="center"

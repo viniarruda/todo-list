@@ -14,5 +14,6 @@ export const microservices = {
 export const routes = {
   signIn: '/login',
   todoList: '/todoList',
+  task: (id: string) => `/tasks/${id}`,
   board: (id: string) => `/boards/${id}`,
 }

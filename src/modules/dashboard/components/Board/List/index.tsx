@@ -15,6 +15,11 @@ import { useTaskList } from '@/services/task/queries/useTaskList'
 
 export const List = ({ column, listIndex, id, columns }: ListProps) => {
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null)
+
+  const toggleDropDownMenu = (id: string) => {
+    setOpenMenuId(prevId => (prevId === id ? null : id)) // Toggle only the clicked menu
+  }
 
   const toggleModal = () => setShowModal(!showModal)
 
@@ -45,11 +50,13 @@ export const List = ({ column, listIndex, id, columns }: ListProps) => {
             listIndex={listIndex}
             todo={task}
             columns={columns}
+            toggleDropDownMenu={toggleDropDownMenu}
+            openMenuId={openMenuId ?? ''}
           />
         ))}
       </ul>
       <Card id={id} index={(columnData || [])?.length} listIndex={listIndex} />
-      <TaskModal open={showModal} onClose={toggleModal} id={id} isEditing />
+      <TaskModal open={showModal} onClose={toggleModal} />
     </Container>
   )
 }

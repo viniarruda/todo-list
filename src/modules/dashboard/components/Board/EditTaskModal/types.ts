@@ -3,10 +3,13 @@ import { Priority } from '@/services/entities/Task'
 export type ModalProps = {
   open: boolean
   onClose: () => void
+  id: string
 }
 
 export type FormData = {
-  clientId: string
+  serviceOrders: Array<{ order: string }>
+  totalAmount: string
+  description: string
   carPlate: string
 }
 

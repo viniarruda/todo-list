@@ -31,5 +31,6 @@ export const dropDownMenu = css({
 export const optionItem = css({
   padding: '10px',
   cursor: 'pointer',
+  color: 'textPrimary',
   _hover: { backgroundColor: 'gray.600' },
 })

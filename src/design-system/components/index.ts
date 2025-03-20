@@ -10,6 +10,7 @@ export {
   Title,
   Typography,
   Spinner,
+  DropdownMenu,
 } from './Display'
 
 // Form

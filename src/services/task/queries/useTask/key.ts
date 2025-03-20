@@ -1,9 +1,9 @@
 import { QueryKey } from '@tanstack/react-query'
 
-import { BoardParams } from './types'
+import { TaskParams } from './types'
 
-export const createUseBoardKey = (params: BoardParams): QueryKey => [
-  'board',
-  'useBoard',
+export const createUseTaskKey = (params: TaskParams): QueryKey => [
+  'task',
+  'useTask',
   params,
 ]

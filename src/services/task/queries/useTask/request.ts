@@ -1,14 +1,14 @@
 import { routes } from '@/services/constants'
-import { BoardData, BoardParams } from './types'
+import { TaskData, TaskParams } from './types'
 import { axiosInstance } from '@/libs/axios'
 
-export const board = async (
+export const task = async (
   microservice: string,
-  params: BoardParams,
-): Promise<BoardData> => {
-  const route = routes.board(params.id)
+  params: TaskParams,
+): Promise<TaskData> => {
+  const route = routes.task(params.id)
 
-  const { data } = await axiosInstance.get<BoardData>(microservice + route)
+  const { data } = await axiosInstance.get<TaskData>(microservice + route)
 
   return data
 }

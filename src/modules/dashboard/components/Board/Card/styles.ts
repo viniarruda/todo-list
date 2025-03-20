@@ -39,6 +39,9 @@ export const Header = styled(`header`, {
     position: 'absolute',
     top: '-38px',
     left: '5px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '4px',
   },
 })
 
@@ -50,5 +53,11 @@ export const EmptyCard = styled(Flex, {
     boxShadow: 'none',
     height: '130px',
     minHeight: '130px',
+  },
+})
+
+export const OptionsMenu = styled('div', {
+  base: {
+    cursor: 'pointer',
   },
 })

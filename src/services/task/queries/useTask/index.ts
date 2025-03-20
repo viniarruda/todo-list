@@ -4,17 +4,17 @@ import { AxiosError } from 'axios'
 
 import { apiUrl } from '@/services/constants'
 
-import { createUseBoardKey } from './key'
-import { board } from './request'
-import { BoardData, BoardParams } from './types'
+import { createUseTaskKey } from './key'
+import { task } from './request'
+import { TaskData, TaskParams } from './types'
 
-export const useBoard = (
-  params: BoardParams,
-  options?: UseQueryOptions<BoardData, AxiosError, BoardData>,
+export const useTask = (
+  params: TaskParams,
+  options?: UseQueryOptions<TaskData, AxiosError, TaskData>,
 ) => {
-  return useQuery<BoardData, AxiosError, BoardData>({
-    queryKey: createUseBoardKey(params),
-    queryFn: () => board(apiUrl, params),
+  return useQuery<TaskData, AxiosError, TaskData>({
+    queryKey: createUseTaskKey(params),
+    queryFn: () => task(apiUrl, params),
     ...options,
   })
 }

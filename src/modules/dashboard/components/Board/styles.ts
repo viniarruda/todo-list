@@ -6,7 +6,7 @@ export const board = cva({
     display: 'flex',
     padding: '0 30px',
     marginTop: '8',
-    width: '1000px',
+    width: 'calc(100lvw - 200px)',
     overflowX: 'auto',
     gap: '2',
 
