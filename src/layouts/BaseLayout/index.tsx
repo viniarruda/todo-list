@@ -15,11 +15,15 @@ import { useToast } from '@/contexts/Toast'
 export const BaseLayout = ({ title, children }: BaseLayoutProps) => {
   const { replace } = useRouter()
 
-  const accessToken = localStorage.getItem('accessToken')
+  const getAccessToken = () => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('accessToken')
+    }
+  }
 
   const { open } = useToast()
 
-  if (!accessToken) {
+  if (!getAccessToken()) {
     open('You need to be logged in to access this page', {
       variant: 'error',
     })
