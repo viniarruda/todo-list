@@ -22,6 +22,7 @@ import { TaskStatus } from '@/services/entities/Board'
 import { Container, EmptyCard, Header, OptionsMenu } from './styles'
 import { badgeColor, CardProps, DragItemProps } from './types'
 import { EditTaskModal } from '../EditTaskModal'
+import { useDeleteTask } from '@/services/task/mutations/useDeleteTask'
 
 export const Card = ({
   todo,
@@ -47,6 +48,8 @@ export const Card = ({
   ]
 
   const { mutate } = useUpdateTask()
+
+  const { mutate: deleteTask } = useDeleteTask()
 
   const queryClient = useQueryClient()
 
@@ -92,7 +95,7 @@ export const Card = ({
               status: newStatus,
             },
             {
-              onSuccess: async data => {
+              onSuccess: async () => {
                 await queryClient.invalidateQueries({
                   queryKey: createUseTaskListKey(),
                 })
@@ -106,6 +109,22 @@ export const Card = ({
       item.listIndex = targetListIndex
     },
   })
+
+  const handleDelete = () => {
+    deleteTask(
+      {
+        id: todo?.id ?? '',
+      },
+      {
+        onSuccess: async () => {
+          await queryClient.invalidateQueries({
+            queryKey: createUseTaskListKey(),
+          })
+          refresh()
+        },
+      },
+    )
+  }
 
   const getBadgeVariantColor = (status: Priority) => {
     const badgeVariants: badgeColor = {
@@ -138,7 +157,7 @@ export const Card = ({
             toggleDropDownMenu?.(todo.id)
             toggleEditModal()
           }}
-          handleDelete={() => {}}
+          handleDelete={handleDelete}
         >
           <OptionsMenu onClick={() => toggleDropDownMenu?.(todo.id)}>
             <MdMoreVert size="20px" color="#000" />
