@@ -19,8 +19,12 @@ import { FormData, ModalProps } from './types'
 import { Spinner } from '@/design-system/components/Display/Spinner'
 import { useCreateClient } from '@/services/clients/mutation/useCreateClient'
 import { useToast } from '@/contexts/Toast'
+import { useQueryClient } from '@tanstack/react-query'
+import { createUseListClientsKey } from '@/services/clients/queries/useListClient/key'
 
 export const ClientModal = ({ onClose, open }: ModalProps) => {
+  const queryClient = useQueryClient()
+
   const { open: openToast } = useToast()
 
   const {
@@ -43,9 +47,13 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
         taxId: data.taxId,
       },
       {
-        onSuccess: () => {
+        onSuccess: async () => {
           openToast('Cliente cadastrado com sucesso!', {
             variant: 'success',
+          })
+
+          await queryClient.invalidateQueries({
+            queryKey: createUseListClientsKey(),
           })
 
           onClose()

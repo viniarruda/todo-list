@@ -2,12 +2,10 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { Controller, useForm, useWatch } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 
 import {
-  Badge,
   Button,
   Flex,
   Select,
@@ -15,15 +13,14 @@ import {
   Typography,
 } from '@/design-system/components'
 
-import { useBoardStore } from '@/stores/useBoardStore'
-
-import { badges, defaultValues } from './constants'
-import { schema } from './schema'
-import { CloseButton, Container, CustomBadge } from './styles'
-import { FormData, ModalProps } from './types'
 import { useListClients } from '@/services/clients/queries/useListClient'
 import { useCreateTask } from '@/services/task/mutations/useCreateTask'
+import { defaultValues } from './constants'
+import { schema } from './schema'
+import { CloseButton, Container } from './styles'
+import { FormData, ModalProps } from './types'
 
+import { createUseListClientsKey } from '@/services/clients/queries/useListClient/key'
 import { createUseTaskListKey } from '@/services/task/queries/useTaskList/key'
 
 export const TaskModal = ({ open, onClose }: ModalProps) => {
@@ -43,7 +40,10 @@ export const TaskModal = ({ open, onClose }: ModalProps) => {
 
   const { mutate, isPending } = useCreateTask()
 
-  const { data, isLoading } = useListClients()
+  const { data } = useListClients({
+    queryKey: createUseListClientsKey(),
+    staleTime: 0,
+  })
 
   const onSubmit = (data: FormData) => {
     mutate(
@@ -53,9 +53,11 @@ export const TaskModal = ({ open, onClose }: ModalProps) => {
       },
       {
         onSettled: async () => {
-          await queryClient.invalidateQueries({
-            queryKey: createUseTaskListKey(),
-          })
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: createUseTaskListKey(),
+            }),
+          ])
           onClose()
         },
       },
