@@ -61,3 +61,12 @@ export const OptionsMenu = styled('div', {
     cursor: 'pointer',
   },
 })
+
+export const Divisor = styled('div', {
+  base: {
+    width: '100%',
+    height: '1px',
+    backgroundColor: 'neutral.200',
+    my: '0.5',
+  },
+})

@@ -15,6 +15,12 @@ export type Label = {
 export type Task = {
   id: string
   clientId: string
+  client: {
+    id: string
+    name: string
+    telephone: string
+    taxId: string
+  }
   carPlate: string
   description: string
   serviceOrders: string[]

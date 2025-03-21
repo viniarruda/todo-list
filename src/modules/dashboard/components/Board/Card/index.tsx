@@ -20,10 +20,11 @@ import { createUseTaskListKey } from '@/services/task/queries/useTaskList/key'
 import { useQueryClient } from '@tanstack/react-query'
 import { TaskStatus } from '@/services/entities/Board'
 
-import { Container, EmptyCard, Header, OptionsMenu } from './styles'
+import { Container, Divisor, EmptyCard, Header, OptionsMenu } from './styles'
 import { badgeColor, CardProps, DragItemProps } from './types'
 import { EditTaskModal } from '../EditTaskModal'
 import { useDeleteTask } from '@/services/task/mutations/useDeleteTask'
+import { formatPhone } from '@/utils/formatters'
 
 export const Card = ({
   todo,
@@ -169,9 +170,23 @@ export const Card = ({
       </Header>
 
       <Flex direction="column" minHeight="16" justify="center">
-        <Typography fontSize="sm" fontWeight="semibold" color="black">
+        <Typography fontSize="sm" fontWeight="bold" color="black">
           Registrado: {format(todo?.createdAt, 'dd/MM/yyyy')}
         </Typography>
+        <Divisor />
+        <Flex direction="column">
+          <Typography fontSize="sm" fontWeight="semibold" color="black">
+            Dados do cliente:
+          </Typography>
+          <Typography fontSize="sm" fontWeight="normal" color="black">
+            {todo?.client.name}
+          </Typography>
+          <Typography fontSize="sm" fontWeight="normal" color="black">
+            {formatPhone(todo?.client.telephone)}
+          </Typography>
+        </Flex>
+        {todo?.description && <Divisor />}
+
         <Typography fontSize="md" fontWeight="normal" color="textTertiary">
           {todo?.description}
         </Typography>

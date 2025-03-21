@@ -60,7 +60,7 @@ export const FormLogin = ({ isLoading }: FormLoginProps) => {
       </Flex>
 
       <Button variant="success" disabled={isLoading} isLoading={isLoading}>
-        Create
+        Login
       </Button>
     </Flex>
   )

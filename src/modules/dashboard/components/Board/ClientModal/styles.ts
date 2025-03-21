@@ -17,7 +17,7 @@ export const CloseButton = styled(`button`, {
 export const Container = styled(`dialog`, {
   base: {
     width: '500px',
-    height: '500px',
+    height: '550px',
     position: 'fixed',
     top: '50%',
     left: '50%',

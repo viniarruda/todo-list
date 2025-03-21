@@ -1,11 +1,10 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, useWatch } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 
 import {
-  Badge,
   Button,
   Flex,
   MaskedStyledInput,
@@ -13,45 +12,44 @@ import {
   Typography,
 } from '@/design-system/components'
 
-import { defaultValues } from './constants'
-import { schema } from './schema'
-import { CloseButton, Container, CustomBadge } from './styles'
-import { FormData, ModalProps } from './types'
+import { clearPhoneMask, clearTaxIdMask } from '@/utils/formatters'
+
+import { useToast } from '@/contexts/Toast'
 import { Spinner } from '@/design-system/components/Display/Spinner'
 import { useCreateClient } from '@/services/clients/mutation/useCreateClient'
-import { useToast } from '@/contexts/Toast'
-import { useQueryClient } from '@tanstack/react-query'
 import { createUseListClientsKey } from '@/services/clients/queries/useListClient/key'
+import { useQueryClient } from '@tanstack/react-query'
+import { defaultValues } from './constants'
+import { schema } from './schema'
+import { CloseButton, Container } from './styles'
+import { FormData, ModalProps } from './types'
 
 export const ClientModal = ({ onClose, open }: ModalProps) => {
   const queryClient = useQueryClient()
-
   const { open: openToast } = useToast()
+  const { mutate, isPending } = useCreateClient()
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues,
     resolver: zodResolver(schema()),
     mode: 'onSubmit',
   })
 
-  const { mutate, isPending } = useCreateClient()
-
-  const handleClose = () => {
-    reset()
-    onClose()
-  }
-
   const onSubmit = (data: FormData) => {
+    // Clean masked values before submitting
+    const cleanPhone = data.phone ? clearPhoneMask(data.phone) : ''
+    const cleanTaxId = data.taxId ? clearTaxIdMask(data.taxId) : ''
+
     mutate(
       {
         name: data.name,
-        telephone: data.phone,
-        taxId: data.taxId,
+        telephone: cleanPhone,
+        taxId: cleanTaxId,
       },
       {
         onSuccess: async () => {
@@ -67,6 +65,11 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
         },
       },
     )
+  }
+
+  const handleClose = () => {
+    reset()
+    onClose()
   }
 
   return (
@@ -91,10 +94,14 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
             <Typography color="textSecondary" fontSize="md">
               Nome *
             </Typography>
-            <TextField {...register('name')} type="text" />
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => <TextField {...field} type="text" />}
+            />
             {errors.name && (
               <Typography fontSize="sm" color="feedbackError">
-                {errors.name.message}
+                {errors.name.message as string}
               </Typography>
             )}
           </Flex>
@@ -102,10 +109,23 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
             <Typography color="textSecondary" fontSize="md">
               Telefone *
             </Typography>
-            <MaskedStyledInput {...register('phone')} mask={'(00)00000-0000'} />
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field: { onChange, value, ref } }) => (
+                <MaskedStyledInput
+                  mask="(00)00000-0000"
+                  inputRef={ref}
+                  value={value}
+                  onAccept={(value: string) => {
+                    onChange(value)
+                  }}
+                />
+              )}
+            />
             {errors.phone && (
               <Typography fontSize="sm" color="feedbackError">
-                {errors.phone.message}
+                {errors.phone.message as string}
               </Typography>
             )}
           </Flex>
@@ -113,22 +133,32 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
             <Typography color="textSecondary" fontSize="md">
               CPF/CNPJ *
             </Typography>
-            <MaskedStyledInput
-              {...register('taxId')}
-              mask={[
-                {
-                  mask: '000.000.000-00',
-                  regex: /^\d{0,11}/,
-                },
-                {
-                  mask: '00.000.000/0000-00',
-                  regex: /^\d{12,14}/,
-                },
-              ]}
+            <Controller
+              name="taxId"
+              control={control}
+              render={({ field: { onChange, value, ref } }) => (
+                <MaskedStyledInput
+                  mask={[
+                    {
+                      mask: '000.000.000-00',
+                      regex: /^\d{0,11}/,
+                    },
+                    {
+                      mask: '00.000.000/0000-00',
+                      regex: /^\d{12,14}/,
+                    },
+                  ]}
+                  inputRef={ref}
+                  value={value}
+                  onAccept={(value: string) => {
+                    onChange(value)
+                  }}
+                />
+              )}
             />
             {errors.taxId && (
               <Typography fontSize="sm" color="feedbackError">
-                {errors.taxId.message}
+                {errors.taxId.message as string}
               </Typography>
             )}
           </Flex>
