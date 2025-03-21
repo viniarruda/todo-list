@@ -173,7 +173,7 @@ export const Card = ({
         <Typography fontSize="md" fontWeight="normal" color="textTertiary">
           {todo?.description}
         </Typography>
-        <Typography fontSize="md" fontWeight="normal" color="textTertiary">
+        <Typography fontSize="md" fontWeight="normal" color="neutral.900">
           R$ {todo?.totalAmount}
         </Typography>
       </Flex>
