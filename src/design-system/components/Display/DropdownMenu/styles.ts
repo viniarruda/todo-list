@@ -14,7 +14,7 @@ export const menu = cva({
     minWidth: '100px',
     borderRadius: 'sm',
     border: '1px solid #949494',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
   },
 })
 
