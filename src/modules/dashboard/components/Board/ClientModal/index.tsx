@@ -8,6 +8,7 @@ import {
   Badge,
   Button,
   Flex,
+  MaskedStyledInput,
   TextField,
   Typography,
 } from '@/design-system/components'
@@ -95,7 +96,7 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
             <Typography color="textSecondary" fontSize="md">
               Telefone *
             </Typography>
-            <TextField {...register('phone')} type="text" />
+            <MaskedStyledInput {...register('phone')} mask={'(00)00000-0000'} />
             {errors.phone && (
               <Typography fontSize="sm" color="feedbackError">
                 {errors.phone.message}
@@ -106,7 +107,19 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
             <Typography color="textSecondary" fontSize="md">
               CPF/CNPJ *
             </Typography>
-            <TextField {...register('taxId')} type="text" />
+            <MaskedStyledInput
+              {...register('taxId')}
+              mask={[
+                {
+                  mask: '000.000.000-00',
+                  regex: /^\d{0,11}/,
+                },
+                {
+                  mask: '00.000.000/0000-00',
+                  regex: /^\d{12,14}/,
+                },
+              ]}
+            />
             {errors.taxId && (
               <Typography fontSize="sm" color="feedbackError">
                 {errors.taxId.message}
