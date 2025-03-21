@@ -5,6 +5,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import { useRouter } from 'next/navigation'
 import { MdMoreVert } from 'react-icons/md'
 import { MdDirectionsCar } from 'react-icons/md'
+import { format } from 'date-fns'
 
 import {
   Badge,
@@ -166,6 +167,9 @@ export const Card = ({
       </Header>
 
       <Flex direction="column" minHeight="16" justify="center">
+        <Typography fontSize="sm" fontWeight="semibold" color="black">
+          Registrado: {format(todo?.createdAt, 'dd/MM/yyyy')}
+        </Typography>
         <Typography fontSize="md" fontWeight="normal" color="textTertiary">
           {todo?.description}
         </Typography>
