@@ -4,6 +4,7 @@ import { Badges, FormData } from './types'
 export const defaultValues: FormData = {
   clientId: '',
   carPlate: '',
+  description: '',
 }
 
 export const badges: Badges = [

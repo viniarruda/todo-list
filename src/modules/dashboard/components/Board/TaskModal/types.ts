@@ -8,6 +8,7 @@ export type ModalProps = {
 export type FormData = {
   clientId: string
   carPlate: string
+  description: string
 }
 
 export type Badges = {

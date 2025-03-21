@@ -139,6 +139,8 @@ export const Card = ({
 
   dragRef(dropRef(ref))
 
+  const INITIAL_STATUS = [TaskStatus.Registered, TaskStatus.OnBudget]
+
   if (todo === undefined) {
     return <EmptyCard ref={ref} />
   }
@@ -173,9 +175,11 @@ export const Card = ({
         <Typography fontSize="md" fontWeight="normal" color="textTertiary">
           {todo?.description}
         </Typography>
-        <Typography fontSize="md" fontWeight="normal" color="neutral.900">
-          R$ {todo?.totalAmount}
-        </Typography>
+        {!INITIAL_STATUS.includes(todo?.status) && (
+          <Typography fontSize="md" fontWeight="normal" color="neutral.900">
+            R$ {todo?.totalAmount}
+          </Typography>
+        )}
       </Flex>
 
       <EditTaskModal

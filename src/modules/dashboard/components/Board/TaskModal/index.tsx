@@ -45,11 +45,17 @@ export const TaskModal = ({ open, onClose }: ModalProps) => {
     staleTime: 0,
   })
 
+  const handleClose = () => {
+    reset()
+    onClose()
+  }
+
   const onSubmit = (data: FormData) => {
     mutate(
       {
         clientId: data.clientId,
         carPlate: data.carPlate,
+        description: data.description,
       },
       {
         onSettled: async () => {
@@ -58,7 +64,7 @@ export const TaskModal = ({ open, onClose }: ModalProps) => {
               queryKey: createUseTaskListKey(),
             }),
           ])
-          onClose()
+          handleClose()
         },
       },
     )
@@ -79,7 +85,7 @@ export const TaskModal = ({ open, onClose }: ModalProps) => {
         <Typography color="textPrimary" fontSize="2xl">
           Criar nova tarefa
         </Typography>
-        <CloseButton onClick={onClose}>
+        <CloseButton onClick={handleClose}>
           <IoMdCloseCircleOutline size="20px" color="#fff" />
         </CloseButton>
       </Flex>
@@ -115,6 +121,17 @@ export const TaskModal = ({ open, onClose }: ModalProps) => {
             {errors.carPlate && (
               <Typography fontSize="sm" color="feedbackError">
                 {errors.carPlate.message}
+              </Typography>
+            )}
+          </Flex>
+          <Flex direction="column" gap="spacing2">
+            <Typography color="textSecondary" fontSize="md">
+              Descrição
+            </Typography>
+            <TextField {...register('description')} type="text" />
+            {errors.description && (
+              <Typography fontSize="sm" color="feedbackError">
+                {errors.description.message}
               </Typography>
             )}
           </Flex>

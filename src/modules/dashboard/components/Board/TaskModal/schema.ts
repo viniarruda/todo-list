@@ -11,5 +11,6 @@ export const schema = () => {
       1,
       'Placa do carro é obrigatório',
     ),
+    description: string(),
   })
 }

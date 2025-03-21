@@ -5,4 +5,5 @@ export type CreateTaskData = Task
 export type CreateTaskParams = {
   clientId: string
   carPlate: string
+  description: string
 }
