@@ -147,7 +147,7 @@ export const Card = ({
     <Container ref={ref} isDragging={isDragging}>
       <Header>
         <MdDirectionsCar size="16px" color="#000" />
-        <Typography fontSize="md" fontWeight="bold">
+        <Typography fontSize="sm" fontWeight="bold">
           Placa: {todo?.carPlate}
         </Typography>
 
