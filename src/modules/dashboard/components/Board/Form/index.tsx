@@ -25,6 +25,7 @@ export const FormRoot = ({
     register,
     formState: { errors },
     watch,
+    reset,
   } = useFormContext<FormData>()
 
   console.log('errors', errors)
@@ -52,6 +53,7 @@ export const FormRoot = ({
           await queryClient.invalidateQueries({
             queryKey: createUseTaskListKey(),
           })
+          reset()
           onClose()
         },
       },

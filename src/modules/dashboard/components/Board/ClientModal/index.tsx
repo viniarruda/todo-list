@@ -32,6 +32,7 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues,
     resolver: zodResolver(schema()),
@@ -39,6 +40,11 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
   })
 
   const { mutate, isPending } = useCreateClient()
+
+  const handleClose = () => {
+    reset()
+    onClose()
+  }
 
   const onSubmit = (data: FormData) => {
     mutate(
@@ -57,7 +63,7 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
             queryKey: createUseListClientsKey(),
           })
 
-          onClose()
+          handleClose()
         },
       },
     )
@@ -75,7 +81,7 @@ export const ClientModal = ({ onClose, open }: ModalProps) => {
         <Typography color="textPrimary" fontSize="2xl">
           Criar novo cliente
         </Typography>
-        <CloseButton onClick={onClose}>
+        <CloseButton onClick={handleClose}>
           <IoMdCloseCircleOutline size="20px" color="#fff" />
         </CloseButton>
       </Flex>
